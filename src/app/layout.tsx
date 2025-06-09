@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
 
 const manropeSans = Manrope({
   variable: "--font-manrope",
@@ -29,9 +30,10 @@ export default function RootLayout({
         className={`${manropeSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <div className="flex min-h-screen container mx-auto p-6">
+        <div className="flex min-h-screen container mx-auto p-6 mt-3.5">
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );
