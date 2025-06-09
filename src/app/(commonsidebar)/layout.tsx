@@ -36,7 +36,7 @@ const CommonSidebarLayout = ({
           <div className="space-y-6">
             <div className="space-y-3">
               <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wider">
-                Getting Started
+                Features
               </h4>
               <div className="space-y-1">
                 {sidebarMenu.map((item) => (
