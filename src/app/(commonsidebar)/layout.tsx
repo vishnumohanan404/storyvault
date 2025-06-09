@@ -7,19 +7,29 @@ import React from "react";
 
 const sidebarMenu = [
   {
-    title: "Projects",
-    href: "/projects",
-    description: "Explore our complete collection of projects",
+    title: "Featured",
+    menu: [
+      {
+        title: "Projects",
+        href: "/projects",
+        description: "Explore our complete collection of projects",
+      },
+      {
+        title: "Resources",
+        href: "/resources",
+        description: "Explore resources to help you get started",
+      },
+    ],
   },
   {
-    title: "Resources",
-    href: "/resources",
-    description: "Explore the resources to start your own project",
-  },
-  {
-    title: "Changelogs",
-    href: "/changelogs",
-    description: "Current version: v1.0.0",
+    title: "Others",
+    menu: [
+      {
+        title: "Changelogs",
+        href: "/changelogs",
+        description: "Current version: v1.0.0",
+      },
+    ],
   },
 ];
 
@@ -34,35 +44,34 @@ const CommonSidebarLayout = ({
       <aside className="w-74 shrink-0">
         <ScrollArea>
           <div className="space-y-6">
-            <div className="space-y-3">
-              <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wider">
-                Features
-              </h4>
-              <div className="space-y-1">
-                {sidebarMenu.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "block rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground",
-                      item.href === pathname
-                        ? "bg-accent text-accent-foreground font-medium"
-                        : "text-muted-foreground"
-                    )}
-                  >
-                    <div className="space-y-1">
-                      <div>{item.title}</div>
-                      <div className="text-xs text-muted-foreground">
-                        {item.description}
+            {sidebarMenu.map((menuItems) => (
+              <div className="space-y-3" key={menuItems.title}>
+                <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wider">
+                  {menuItems.title}
+                </h4>
+                <div className="space-y-1">
+                  {menuItems.menu.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={cn(
+                        "block rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground",
+                        item.href === pathname
+                          ? "bg-accent text-accent-foreground font-medium"
+                          : "text-muted-foreground"
+                      )}
+                    >
+                      <div className="space-y-1">
+                        <div>{item.title}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {item.description}
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="space-y-3">
-              <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wider"></h4>
-            </div>
+            ))}
           </div>
         </ScrollArea>
       </aside>

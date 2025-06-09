@@ -5,7 +5,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="border border-t w-full">
-      <div className="container mx-auto p-6">
+      <div className="container mx-auto max-w-7xl py-6">
         <div className="flex justify-between">
           <div className="space-y-1.5">
             <h4 className="font-semibold text-xl">Story</h4>
