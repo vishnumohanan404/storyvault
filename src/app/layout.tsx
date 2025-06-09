@@ -27,12 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${manropeSans.variable} ${geistMono.variable} antialiased`}
+        className={`${manropeSans.variable} ${geistMono.variable} antialiased `}
       >
         <Navbar />
-        <div className="flex min-h-screen container mx-auto p-6 mt-3.5">
+        <main className="min-h-screen max-w-7xl mx-auto py-8">
           {children}
-        </div>
+        </main>
         <Footer />
       </body>
     </html>

@@ -23,12 +23,13 @@ const sidebarMenu = [
   },
 ];
 
-const CommonSidebarLayout = ({
+const ProjectSidebarLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
   const pathname = usePathname();
+  console.log("object :>> ", pathname);
   return (
     <div className="flex space-x-14">
       <aside className="w-74 shrink-0">
@@ -71,4 +72,4 @@ const CommonSidebarLayout = ({
   );
 };
 
-export default CommonSidebarLayout;
+export default ProjectSidebarLayout;
