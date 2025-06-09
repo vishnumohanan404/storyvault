@@ -1,12 +1,4 @@
 "use client";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import Link from "next/link";
@@ -106,41 +98,7 @@ const ProjectSidebarLayout = ({
           </div>
         </ScrollArea>
       </aside>
-      <div>
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
-            </BreadcrumbItem>
-
-            {(segments.length === 2 || segments.length > 2) && (
-              <>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>
-                    {(() => {
-                      const segment = segments[2]; // Third part (e.g., architecture, guide)
-                      if (!segment) return "Overview"; // Handles /project/[id]
-                      const section = sidebarMenu.find((section) =>
-                        section.menu.some((item) => item.path === segment)
-                      );
-                      const item = section?.menu.find(
-                        (item) => item.path === segment
-                      );
-                      return (
-                        item?.title ||
-                        segment.charAt(0).toUpperCase() + segment.slice(1)
-                      );
-                    })()}
-                  </BreadcrumbPage>
-                </BreadcrumbItem>
-              </>
-            )}
-          </BreadcrumbList>
-        </Breadcrumb>
-
-        {children}
-      </div>
+      <div>{children}</div>
     </div>
   );
 };
