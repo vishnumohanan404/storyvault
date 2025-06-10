@@ -37,7 +37,6 @@ type Project = {
 
 const ProjectsPage = async () => {
   const projects = await client.fetch<Project[]>(PROJECTS_QUERY, {}, options);
-  console.log('projects :>> ', projects);
   return (
     <div className="w-[100%]">
       <div className="grid grid-cols-3 gap-4">
