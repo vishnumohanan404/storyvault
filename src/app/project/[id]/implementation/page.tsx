@@ -11,6 +11,7 @@ import {
 import React from "react";
 import { ProjectPageProps } from "../types";
 import ExploreKanban from "@/components/common/explore-cards/kanban";
+import { Separator } from "@/components/ui/separator";
 
 const ImplementationPage = async ({ params }: ProjectPageProps) => {
   const { id } = await params;
@@ -18,9 +19,10 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
   return (
     <main className="space-y-8 mb-5">
       <PageHeaderSection
-        title="Step-by-Step Implementation"
-        description="Complete guide for implementing a production-ready GitOps pipeline on AWS. Follow these detailed steps to build your own scalable infrastructure."
+        title="Interactive Kanban Board"
+        description="Experience hands-on project management with our interactive Kanban board. Drag and drop user stories between columns, and export your board state to GitHub Projects or download as JSON."
       />
+      <Separator />
       <section className="space-y-3">
         <h1 className="text-2xl font-semibold">Sample Applications</h1>
         <p className="text-muted-foreground">

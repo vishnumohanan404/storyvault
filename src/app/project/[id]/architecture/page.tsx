@@ -5,6 +5,7 @@ import PageContentSection from "@/components/layout/page-content-section";
 import ExploreUserstories from "@/components/common/explore-cards/userstories";
 import ExploreImplementation from "@/components/common/explore-cards/implementation";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Separator } from "@/components/ui/separator";
 
 const PROJECT_SYSTEM_ARCHITECTURE = `*[_type == "systemArchitecture" && project._ref == $projectId][0] {
   _id,
@@ -48,6 +49,7 @@ const ArchitecturePage = async ({ params }: ProjectPageProps) => {
         description={systemArchitecture.description}
         title="System Architecture"
       />
+      <Separator />
       <PageContentSection title="Core Components">
         <div className="grid grid-cols-3 lg:grid-cols-3 gap-6">
           {systemArchitecture.coreComponents.map((component) => (

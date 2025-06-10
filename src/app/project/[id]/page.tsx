@@ -6,6 +6,7 @@ import { client } from "@/sanity/client";
 import { TargetIcon, UsersIcon, ZapIcon } from "lucide-react";
 import React from "react";
 import { Project, ProjectPageProps } from "./types";
+import { Separator } from "@/components/ui/separator";
 
 const PROJECT_OVERVIEW_QUERY = `
   *[_type == "overview" && project._ref == $projectId][0]{
@@ -50,6 +51,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
         description={projectData.description}
         tags={projectData.tags}
       />
+      <Separator />
       <PageContentSection title="Goals">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projectData.goals.primary && (

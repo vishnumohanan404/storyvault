@@ -6,6 +6,7 @@ import { client } from "@/sanity/client";
 import { Clock, Target } from "lucide-react";
 import React from "react";
 import { UserStory } from "../types";
+import { Separator } from "@/components/ui/separator";
 
 const PROJECT_USERSTORIES_QUERY = `
     *[_type == "userstories" && project._ref == $projectId][0].userstory[]{
@@ -35,6 +36,7 @@ const UserStories = async ({ params }: { params: { id: string } }) => {
         title="User Stories"
         description="Detailed breakdown of development phases, user requirements, and implementation strategies for the gitops aws-pipeline project."
       />
+      <Separator />
       <PageContentSection title="All User Stories">
         <div className="space-y-6">
           {userstoriesData.map((userstory) => {
