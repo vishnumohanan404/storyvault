@@ -1,10 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { SidebarMenu } from "./types";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const sidebarMenu: SidebarMenu = [
   {
