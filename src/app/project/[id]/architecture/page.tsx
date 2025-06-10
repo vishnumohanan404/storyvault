@@ -1,59 +1,11 @@
-import ExploreImplementation from "@/components/common/explore-cards/implementation";
-import ExploreUserstories from "@/components/common/explore-cards/userstories";
-import PageContentSection from "@/components/layout/page-content-section";
-import PageHeaderSection from "@/components/layout/page-header-section";
-import { Skeleton } from "@/components/ui/skeleton";
 import { client } from "@/sanity/client";
-import {
-  ArrowRight,
-  CodeIcon,
-  DatabaseIcon,
-  Layers,
-  ShieldBanIcon,
-  ShieldIcon,
-  Smartphone,
-} from "lucide-react";
-import React from "react";
+import { SystemArchitecture, ProjectPageProps } from "../types";
+import PageHeaderSection from "@/components/layout/page-header-section";
+import PageContentSection from "@/components/layout/page-content-section";
+import ExploreUserstories from "@/components/common/explore-cards/userstories";
+import ExploreImplementation from "@/components/common/explore-cards/implementation";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export interface SystemArchitecture {
-  _id: string;
-  _createdAt: string;
-  project: {
-    _ref: string;
-    _type: "reference";
-  };
-  title: string;
-  description: string;
-  coreComponents: CoreComponent[];
-  dataFlow: DataFlowStep[];
-  dbSchema: DatabaseTable[];
-  deploymentStrategy: {
-    url: string;
-  };
-}
-
-export interface CoreComponent {
-  title: string;
-  subtitle?: string;
-  features: string[];
-}
-
-export interface DataFlowStep {
-  order: number;
-  title: string;
-  description?: string;
-}
-
-export interface DatabaseTable {
-  table: string;
-  schema: SchemaField[];
-}
-
-export interface SchemaField {
-  column: string;
-  type: string;
-  description?: string;
-}
 const PROJECT_SYSTEM_ARCHITECTURE = `*[_type == "systemArchitecture" && project._ref == $projectId][0] {
   _id,
   _createdAt,
@@ -81,15 +33,15 @@ const PROJECT_SYSTEM_ARCHITECTURE = `*[_type == "systemArchitecture" && project.
   }
 }`;
 
-const ArchitecturePage = async ({ params }: { params: { id: string } }) => {
+const ArchitecturePage = async ({ params }: ProjectPageProps) => {
   const { id } = await params;
   const systemArchitecture: SystemArchitecture = await client.fetch(
     PROJECT_SYSTEM_ARCHITECTURE,
     {
-      projectId: id, // replace dynamically
+      projectId: id,
     }
   );
-  console.log("systemArchitecture :>> ", systemArchitecture);
+
   return (
     <main className="space-y-8 mb-5">
       <PageHeaderSection

@@ -3,9 +3,9 @@ import ExploreUserstories from "@/components/common/explore-cards/userstories";
 import PageContentSection from "@/components/layout/page-content-section";
 import PageHeaderSection from "@/components/layout/page-header-section";
 import { client } from "@/sanity/client";
-import { ProjectsList } from "@/types";
 import { TargetIcon, UsersIcon, ZapIcon } from "lucide-react";
 import React from "react";
+import { Project, ProjectPageProps } from "./types";
 
 const PROJECT_OVERVIEW_QUERY = `
   *[_type == "overview" && project._ref == $projectId][0]{
@@ -31,9 +31,9 @@ const PROJECT_OVERVIEW_QUERY = `
   }
 `;
 
-const ProjectPage = async ({ params }: { params: { id: string } }) => {
+const ProjectPage = async ({ params }: ProjectPageProps) => {
   const { id } = await params;
-  const projectData: ProjectsList = await client.fetch(PROJECT_OVERVIEW_QUERY, {
+  const projectData: Project = await client.fetch(PROJECT_OVERVIEW_QUERY, {
     projectId: id,
   });
   if (!projectData) {

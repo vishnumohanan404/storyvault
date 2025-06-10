@@ -3,9 +3,9 @@ import PageContentSection from "@/components/layout/page-content-section";
 import PageHeaderSection from "@/components/layout/page-header-section";
 import { getPriorityStyle, getSizeStyle, getStatusStyle } from "@/lib/utils";
 import { client } from "@/sanity/client";
-import { UserStory } from "@/types";
 import { Clock, Target } from "lucide-react";
 import React from "react";
+import { UserStory } from "../types";
 
 const PROJECT_USERSTORIES_QUERY = `
     *[_type == "userstories" && project._ref == $projectId][0].userstory[]{
