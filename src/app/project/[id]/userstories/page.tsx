@@ -34,7 +34,7 @@ const UserStories = async ({ params }: { params: { id: string } }) => {
     <main className="space-y-8 mb-5">
       <PageHeaderSection
         title="User Stories"
-        description="Detailed breakdown of development phases, user requirements, and implementation strategies for the gitops aws-pipeline project."
+        description="Detailed breakdown of development phases, user requirements, and implementation strategies."
       />
       <Separator />
       <PageContentSection title="All User Stories">

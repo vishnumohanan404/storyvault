@@ -19,8 +19,8 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
   return (
     <main className="space-y-8 mb-5">
       <PageHeaderSection
-        title="Interactive Kanban Board"
-        description="Experience hands-on project management with our interactive Kanban board. Drag and drop user stories between columns, and export your board state to GitHub Projects or download as JSON."
+        title="Step-by-Step Implementation"
+        description="Complete guide for implementing this production-ready project. Follow these detailed steps to build your own scalable infrastructure."
       />
       <Separator />
       <section className="space-y-3">
