@@ -92,7 +92,7 @@ const ArchitecturePage = async ({ params }: ProjectPageProps) => {
               key={flow.order + "_" + flow.title}
               className="rounded-lg border bg-card text-card-foreground shadow-sm p-6"
             >
-              <div className="flex items-start space-x-4">
+              <div className="flex items-center space-x-4 ">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold text-sm">
                   {flow.order}
                 </div>
