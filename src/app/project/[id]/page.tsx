@@ -1,3 +1,7 @@
+import ExploreArchitecture from "@/components/common/explore-cards/architecture";
+import ExploreUserstories from "@/components/common/explore-cards/userstories";
+import PageContentSection from "@/components/layout/page-content-section";
+import PageHeaderSection from "@/components/layout/page-header-section";
 import { Badge } from "@/components/ui/badge";
 import { client } from "@/sanity/client";
 import { ArrowRight, TargetIcon, UsersIcon, ZapIcon } from "lucide-react";
@@ -7,7 +11,7 @@ export interface ProjectOverview {
   createdAt: string; // ISO string from Sanity
   title: string;
   tags?: string[];
-  description?: string;
+  description: string;
   project: {
     _id: string;
     title: string;
@@ -63,24 +67,13 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
     );
   }
   return (
-    <div className="space-y-8">
-      <div className="space-y-3">
-        <div className="flex gap-2">
-          {projectData.tags?.map((item) => (
-            <Badge key={item} variant="outline" className="rounded-2xl">
-              {item}
-            </Badge>
-          ))}
-        </div>
-        <h1 className="text-4xl font-bold tracking-tight">
-          {projectData.title}
-        </h1>
-        <p className="text-xl text-muted-foreground leading-relaxed">
-          {projectData.description}
-        </p>
-      </div>
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold">Goals</h2>
+    <main className="space-y-8 mb-5">
+      <PageHeaderSection
+        title={projectData.title}
+        description={projectData.description}
+        tags={projectData.tags}
+      />
+      <PageContentSection title="Goals">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {projectData.goals.primary && (
             <div className="rounded-lg border bg-card text-card-foreground shadow-sm relative overflow-hidden">
@@ -136,9 +129,8 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold">Technology Stack</h2>
+      </PageContentSection>
+      <PageContentSection title="Technology Stack">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {projectData.stacks?.map((stack) => (
             <div
@@ -154,45 +146,14 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
             </div>
           ))}
         </div>
-      </div>
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold">Explore Further</h2>
+      </PageContentSection>
+      <PageContentSection title="Explore Further">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">System Architecture</h3>
-              <p className="text-muted-foreground">
-                Dive deep into the technical architecture, infrastructure
-                design, and implementation patterns used in this project.
-              </p>
-              <a
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-fit"
-                href={`/project/${id}/architecture`}
-              >
-                View Architecture
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </div>
-          </div>
-          <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">User Stories</h3>
-              <p className="text-muted-foreground">
-                Explore the detailed breakdown of development phases, user
-                requirements, and implementation strategies.
-              </p>
-              <a
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-fit"
-                href={`/project/${id}/userstories`}
-              >
-                Try User Stories
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </div>
-          </div>
+          <ExploreArchitecture id={id} />
+          <ExploreUserstories id={id} />
         </div>
-      </div>
-    </div>
+      </PageContentSection>
+    </main>
   );
 };
 
