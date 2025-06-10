@@ -1,5 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import {
+  ArrowRight,
   CodeIcon,
   DatabaseIcon,
   Layers,
@@ -145,7 +146,8 @@ const systemData = {
   },
 };
 
-const ArchitecturePage = () => {
+const ArchitecturePage = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
   return (
     <div className="space-y-8 mb-5">
       <div className="space-y-3">
@@ -522,6 +524,43 @@ const ArchitecturePage = () => {
         <h2 className="text-2xl font-semibold">Deployment Strategy</h2>
         <div className="rounded-lg w-full h-120 border">
           <Skeleton className="h-full w-full" />
+        </div>
+      </div>
+      <div className="space-y-3">
+        <h2 className="text-2xl font-semibold">Explore Further</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">Implementation Guide</h3>
+              <p className="text-muted-foreground">
+                Step-by-step process to guide you through this project from step
+                one to production.
+              </p>
+              <a
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-fit"
+                href={`/project/${id}/architecture`}
+              >
+                View Architecture
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+          </div>
+          <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg">User Stories</h3>
+              <p className="text-muted-foreground">
+                Explore the detailed breakdown of development phases, user
+                requirements, and implementation strategies.
+              </p>
+              <a
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-fit"
+                href={`/project/${id}/userstories`}
+              >
+                Read User Stories
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
