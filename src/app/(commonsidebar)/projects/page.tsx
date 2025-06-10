@@ -95,14 +95,16 @@ const ProjectsPage = async () => {
                     View Docs
                   </Button>
                 </Link>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  className="hover:cursor-pointer flex items-center"
-                >
-                  Kanban
-                  <ExternalLinkIcon />
-                </Button>
+                <Link href={`/kanban/${project._id}`}>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="hover:cursor-pointer flex items-center"
+                  >
+                    Kanban
+                    <ExternalLinkIcon />
+                  </Button>
+                </Link>
               </div>
             </CardFooter>
           </Card>
