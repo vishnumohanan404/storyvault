@@ -1,3 +1,25 @@
+// overview types
+export interface ProjectsList {
+  _id?: string;
+  createdAt: string; // ISO string from Sanity
+  title: string;
+  tags?: string[];
+  description: string;
+  project: {
+    _id: string;
+    title: string;
+  };
+  goals: {
+    primary: string;
+    secondary?: string;
+    future?: string;
+  };
+  stacks?: {
+    title: string;
+    description?: string;
+  }[];
+}
+
 // userstories types
 export type UserStoryStatus =
   | "Backlog"

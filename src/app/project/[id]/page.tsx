@@ -2,30 +2,10 @@ import ExploreArchitecture from "@/components/common/explore-cards/architecture"
 import ExploreUserstories from "@/components/common/explore-cards/userstories";
 import PageContentSection from "@/components/layout/page-content-section";
 import PageHeaderSection from "@/components/layout/page-header-section";
-import { Badge } from "@/components/ui/badge";
 import { client } from "@/sanity/client";
-import { ArrowRight, TargetIcon, UsersIcon, ZapIcon } from "lucide-react";
+import { ProjectsList } from "@/types";
+import { TargetIcon, UsersIcon, ZapIcon } from "lucide-react";
 import React from "react";
-export interface ProjectOverview {
-  _id?: string;
-  createdAt: string; // ISO string from Sanity
-  title: string;
-  tags?: string[];
-  description: string;
-  project: {
-    _id: string;
-    title: string;
-  };
-  goals: {
-    primary: string;
-    secondary?: string;
-    future?: string;
-  };
-  stacks?: {
-    title: string;
-    description?: string;
-  }[];
-}
 
 const PROJECT_OVERVIEW_QUERY = `
   *[_type == "overview" && project._ref == $projectId][0]{
@@ -53,12 +33,9 @@ const PROJECT_OVERVIEW_QUERY = `
 
 const ProjectPage = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
-  const projectData: ProjectOverview = await client.fetch(
-    PROJECT_OVERVIEW_QUERY,
-    {
-      projectId: id,
-    }
-  );
+  const projectData: ProjectsList = await client.fetch(PROJECT_OVERVIEW_QUERY, {
+    projectId: id,
+  });
   if (!projectData) {
     return (
       <div className="text-red-500 text-center text-xl py-10">
