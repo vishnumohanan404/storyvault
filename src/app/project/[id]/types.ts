@@ -1,6 +1,22 @@
 // project page params.id prop
 export type ProjectPageProps = { params: { id: string } };
 
+// sidebar nav menu types
+type SidebarMenuItem = {
+  id: number;
+  title: string;
+  description: string;
+  path?: string; // optional because some items use `href` instead
+  href?: string;
+};
+
+type SidebarSection = {
+  title: string;
+  menu: SidebarMenuItem[];
+};
+
+export type SidebarMenu = SidebarSection[];
+
 // overview page
 export interface Project {
   _id?: string;

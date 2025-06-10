@@ -4,8 +4,9 @@ import { ScrollArea } from "@radix-ui/react-scroll-area";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { SidebarMenu } from "./types";
 
-const sidebarMenu = [
+const sidebarMenu: SidebarMenu = [
   {
     title: "Getting Started",
     menu: [
@@ -38,11 +39,23 @@ const sidebarMenu = [
         path: "implementation",
         description: "Step-by-step process",
       },
+      // todo: after completing first project
+      // {
+      //   id: 3,
+      //   title: "Lessons Learned",
+      //   path: "lessons",
+      //   description: "Insights and best practices",
+      // },
+    ],
+  },
+  {
+    title: "Tools",
+    menu: [
       {
-        id: 3,
-        title: "Lessons Learned",
-        path: "lessons",
-        description: "Insights and best practices",
+        id: 1,
+        title: "Kanban",
+        href: "kanban",
+        description: "Interractive userstory to track your progress",
       },
     ],
   },
@@ -68,30 +81,33 @@ const ProjectSidebarLayout = ({
                   {menuItems.title}
                 </h4>
                 <div className="space-y-1">
-                  {menuItems.menu.map((item) => (
-                    <Link
-                      key={item.id}
-                      href={`/project/${projectId}${
-                        item.path ? `/${item.path}` : ""
-                      }`}
-                      className={cn(
-                        "block rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground",
-                        pathname ===
-                          `/project/${projectId}${
-                            item.path ? `/${item.path}` : ""
-                          }`
-                          ? "bg-accent text-accent-foreground font-medium"
-                          : "text-muted-foreground"
-                      )}
-                    >
-                      <div className="space-y-1">
-                        <div>{item.title}</div>
-                        <div className="text-xs text-muted-foreground">
-                          {item.description}
+                  {menuItems.menu.map((item) => {
+                    const linkHref = item.href
+                      ? `/${item.href}/${projectId}` // use href directly
+                      : `/project/${projectId}${item.path ? `/${item.path}` : ""}`; // fallback to path logic
+
+                    const isActive = pathname === linkHref;
+
+                    return (
+                      <Link
+                        key={item.id}
+                        href={linkHref}
+                        className={cn(
+                          "block rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground",
+                          isActive
+                            ? "bg-accent text-accent-foreground font-medium"
+                            : "text-muted-foreground"
+                        )}
+                      >
+                        <div className="space-y-1">
+                          <div>{item.title}</div>
+                          <div className="text-xs text-muted-foreground">
+                            {item.description}
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             ))}
