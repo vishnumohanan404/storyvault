@@ -1,3 +1,7 @@
+import ExploreImplementation from "@/components/common/explore-cards/implementation";
+import ExploreUserstories from "@/components/common/explore-cards/userstories";
+import PageContentSection from "@/components/layout/page-content-section";
+import PageHeaderSection from "@/components/layout/page-header-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { client } from "@/sanity/client";
 import {
@@ -87,17 +91,12 @@ const ArchitecturePage = async ({ params }: { params: { id: string } }) => {
   );
   console.log("systemArchitecture :>> ", systemArchitecture);
   return (
-    <div className="space-y-8 mb-5">
-      <div className="space-y-3">
-        <h1 className="text-4xl font-bold tracking-tight">
-          System Architecture
-        </h1>
-        <p className="text-xl text-muted-foreground leading-relaxed">
-          {systemArchitecture.description}
-        </p>
-      </div>
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold">Core Components</h2>
+    <main className="space-y-8 mb-5">
+      <PageHeaderSection
+        description={systemArchitecture.description}
+        title="System Architecture"
+      />
+      <PageContentSection title="Core Components">
         <div className="grid grid-cols-3 lg:grid-cols-3 gap-6">
           {systemArchitecture.coreComponents.map((component) => (
             <div
@@ -132,9 +131,9 @@ const ArchitecturePage = async ({ params }: { params: { id: string } }) => {
             </div>
           ))}
         </div>
-      </div>
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold">Data Flow & User Journey</h2>
+      </PageContentSection>
+
+      <PageContentSection title="Data Flow & User Journey">
         <div className="space-y-4">
           {systemArchitecture.dataFlow.map((flow) => (
             <div
@@ -155,9 +154,9 @@ const ArchitecturePage = async ({ params }: { params: { id: string } }) => {
             </div>
           ))}
         </div>
-      </div>
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold">Database Design</h2>
+      </PageContentSection>
+
+      <PageContentSection title="Database Design">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {systemArchitecture.dbSchema.map((collection) => (
             <div
@@ -185,7 +184,8 @@ const ArchitecturePage = async ({ params }: { params: { id: string } }) => {
             </div>
           ))}
         </div>
-      </div>
+      </PageContentSection>
+
       {/* <div className="space-y-3">
         <h2 className="text-2xl font-semibold">Security &amp; Performance</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -257,50 +257,19 @@ const ArchitecturePage = async ({ params }: { params: { id: string } }) => {
           </div>
         </div>
       </div> */}
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold">Deployment Strategy</h2>
+      <PageContentSection title="Deployment Strategy">
         <div className="rounded-lg w-full h-120 border">
           <Skeleton className="h-full w-full" />
         </div>
-      </div>
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold">Explore Further</h2>
+      </PageContentSection>
+
+      <PageContentSection title="Explore Further">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Implementation Guide</h3>
-              <p className="text-muted-foreground">
-                Step-by-step process to guide you through this project from step
-                one to production.
-              </p>
-              <a
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-fit"
-                href={`/project/${id}/architecture`}
-              >
-                View Guide
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </div>
-          </div>
-          <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">User Stories</h3>
-              <p className="text-muted-foreground">
-                Explore the detailed breakdown of development phases, user
-                requirements, and implementation strategies.
-              </p>
-              <a
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-fit"
-                href={`/project/${id}/userstories`}
-              >
-                Try User Stories
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </div>
-          </div>
+          <ExploreUserstories id={id} />
+          <ExploreImplementation id={id} />
         </div>
-      </div>
-    </div>
+      </PageContentSection>
+    </main>
   );
 };
 
