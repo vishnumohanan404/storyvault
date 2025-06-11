@@ -77,7 +77,7 @@ export default async function Home() {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/projects">
+              <Link href="/resource">
                 <Button
                   className="border-muted-foreground rounded-3xl border hover:cursor-pointer"
                   variant={'secondary'}
