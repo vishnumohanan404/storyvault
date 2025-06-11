@@ -27,7 +27,7 @@ const UserStories = async ({ params }: { params: { id: string } }) => {
     PROJECT_USERSTORIES_QUERY,
     {
       projectId: id,
-    }
+    },
   );
 
   return (

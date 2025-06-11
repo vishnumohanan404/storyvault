@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const ChangelogsPage = () => {
-  return (
-    <div>ChangelogsPage</div>
-  )
-}
+  return <div>ChangelogsPage</div>;
+};
 
-export default ChangelogsPage
+export default ChangelogsPage;

@@ -64,7 +64,7 @@ export function KanbanCard({ story, onClick }: KanbanCardProps) {
       style={style}
       className={cn(
         "cursor-grab active:cursor-grabbing transition-shadow hover:shadow-md",
-        isDragging && "opacity-50 shadow-lg"
+        isDragging && "opacity-50 shadow-lg",
       )}
       {...attributes}
       {...listeners}
@@ -91,7 +91,7 @@ export function KanbanCard({ story, onClick }: KanbanCardProps) {
                 variant="secondary"
                 className={cn(
                   "text-xs px-1.5 py-0.5",
-                  labelColors[label as keyof typeof labelColors]
+                  labelColors[label as keyof typeof labelColors],
                 )}
               >
                 {label}

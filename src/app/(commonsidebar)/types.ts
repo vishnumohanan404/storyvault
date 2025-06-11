@@ -8,7 +8,6 @@ export type BlogPost = {
   coverImage: { url: string };
 };
 
-
 export type Project = {
   _id: string;
   title: string;

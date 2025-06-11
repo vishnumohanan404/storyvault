@@ -342,7 +342,7 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
       </section>
       <PageContentSection title="Explore Further">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ExploreLessons id={id} />
+          {/* <ExploreLessons id={id} /> */}
           <ExploreKanban id={id} />
         </div>
       </PageContentSection>

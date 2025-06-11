@@ -51,7 +51,7 @@ export function KanbanColumn({
     <Card
       className={cn(
         "h-fit transition-colors",
-        isOver && "ring-2 ring-primary ring-offset-2"
+        isOver && "ring-2 ring-primary ring-offset-2",
       )}
     >
       <CardHeader className="pb-3">
@@ -60,7 +60,8 @@ export function KanbanColumn({
             <div
               className={cn(
                 "w-3 h-3 rounded-full",
-                colorMap[column.color as keyof typeof colorMap] || "bg-gray-500"
+                colorMap[column.color as keyof typeof colorMap] ||
+                  "bg-gray-500",
               )}
             />
             <span>{column.title}</span>

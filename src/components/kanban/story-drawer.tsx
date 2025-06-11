@@ -274,7 +274,7 @@ export function StoryDrawer({
                     "text-lg font-semibold",
                     priorityColors[
                       extendedStory.priority as keyof typeof priorityColors
-                    ]
+                    ],
                   )}
                 >
                   {extendedStory.priority}
@@ -295,7 +295,7 @@ export function StoryDrawer({
                   key={label}
                   className={cn(
                     "px-3 py-1",
-                    labelColors[label as keyof typeof labelColors]
+                    labelColors[label as keyof typeof labelColors],
                   )}
                 >
                   {label === "S" && "Small"}

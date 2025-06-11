@@ -227,7 +227,7 @@ export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
       activationConstraint: {
         distance: 8,
       },
-    })
+    }),
   );
 
   // Load board state from localStorage on mount
@@ -248,7 +248,7 @@ export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
     if (mounted) {
       localStorage.setItem(
         `kanban-board-state-${projectId}`,
-        JSON.stringify(boardData)
+        JSON.stringify(boardData),
       );
     }
   }, [boardData, mounted, projectId]);
@@ -268,7 +268,7 @@ export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
 
     // Find the active story
     const activeStory = boardData.stories.find(
-      (story) => story.id === activeId
+      (story) => story.id === activeId,
     );
     if (!activeStory) return;
 
@@ -277,7 +277,7 @@ export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
     if (!boardData.columns.find((col) => col.id === overId)) {
       // If dropped on a story, find its column
       const targetStory = boardData.stories.find(
-        (story) => story.id === overId
+        (story) => story.id === overId,
       );
       if (targetStory) {
         targetColumn = targetStory.column;
@@ -290,12 +290,12 @@ export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
     setBoardData((prev) => ({
       ...prev,
       stories: prev.stories.map((story) =>
-        story.id === activeId ? { ...story, column: targetColumn } : story
+        story.id === activeId ? { ...story, column: targetColumn } : story,
       ),
     }));
 
     toast.success(
-      `Moved "${activeStory.title}" to ${boardData.columns.find((col) => col.id === targetColumn)?.title}`
+      `Moved "${activeStory.title}" to ${boardData.columns.find((col) => col.id === targetColumn)?.title}`,
     );
   };
 
@@ -308,7 +308,7 @@ export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
     setBoardData((prev) => ({
       ...prev,
       stories: prev.stories.map((story) =>
-        story.id === updatedStory.id ? updatedStory : story
+        story.id === updatedStory.id ? updatedStory : story,
       ),
     }));
     setSelectedStory(updatedStory);
@@ -336,7 +336,7 @@ export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
   const exportToGitHub = () => {
     // Placeholder for GitHub export functionality
     toast.info(
-      "GitHub export will be available in Phase 2 with authentication"
+      "GitHub export will be available in Phase 2 with authentication",
     );
   };
 
@@ -426,7 +426,7 @@ export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
               key={column.id}
               column={column}
               stories={boardData.stories.filter(
-                (story) => story.column === column.id
+                (story) => story.column === column.id,
               )}
               onStoryClick={handleStoryClick}
             />

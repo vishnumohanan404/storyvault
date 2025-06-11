@@ -1,4 +1,10 @@
-import { GithubIcon, Globe2Icon, LinkedinIcon, TwitterIcon, XIcon } from "lucide-react";
+import {
+  GithubIcon,
+  Globe2Icon,
+  LinkedinIcon,
+  TwitterIcon,
+  XIcon,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 

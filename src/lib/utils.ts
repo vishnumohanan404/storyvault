@@ -1,4 +1,8 @@
-import { UserStoryPriority, UserStorySize, UserStoryStatus } from "@/app/project/[id]/types";
+import {
+  UserStoryPriority,
+  UserStorySize,
+  UserStoryStatus,
+} from "@/app/project/[id]/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 

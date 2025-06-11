@@ -40,7 +40,7 @@ const ArchitecturePage = async ({ params }: ProjectPageProps) => {
     PROJECT_SYSTEM_ARCHITECTURE,
     {
       projectId: id,
-    }
+    },
   );
 
   return (

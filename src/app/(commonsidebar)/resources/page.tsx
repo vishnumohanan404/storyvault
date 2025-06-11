@@ -78,14 +78,14 @@ const ResourcePage = () => {
 
         const { data } = result;
         const allPosts: BlogPost[] = data.publication.posts.edges.map(
-          (edge: any) => edge.node
+          (edge: any) => edge.node,
         );
 
         setPostsList(allPosts);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
         setError(
-          "Sorry, we couldn't load the blog posts at the moment. Please try again later."
+          "Sorry, we couldn't load the blog posts at the moment. Please try again later.",
         );
       } finally {
         setLoading(false);
