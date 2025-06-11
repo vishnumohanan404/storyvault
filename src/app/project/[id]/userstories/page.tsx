@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { getPriorityStyle, getSizeStyle, getStatusStyle } from '@/lib/utils';
 import { client } from '@/sanity/client';
 
-import { UserStory } from '../types';
+import { ProjectPageProps, UserStory } from '../types';
 
 const PROJECT_USERSTORIES_QUERY = `
     *[_type == "userstories" && project._ref == $projectId][0].userstory[]{
@@ -23,7 +23,7 @@ const PROJECT_USERSTORIES_QUERY = `
     }
   `;
 
-const UserStories = async ({ params }: { params: { id: string } }) => {
+const UserStories = async ({ params }: ProjectPageProps) => {
   const { id } = await params;
   const userstoriesData: UserStory[] = await client.fetch(
     PROJECT_USERSTORIES_QUERY,

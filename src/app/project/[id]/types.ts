@@ -1,5 +1,5 @@
 // project page params.id prop
-export type ProjectPageProps = { params: { id: string } };
+export type ProjectPageProps = { params: Promise<{ id: string }> };
 
 // sidebar nav menu types
 type SidebarMenuItem = {
