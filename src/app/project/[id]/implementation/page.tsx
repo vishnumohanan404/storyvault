@@ -12,6 +12,7 @@ import React from "react";
 import { ProjectPageProps } from "../types";
 import ExploreKanban from "@/components/common/explore-cards/kanban";
 import { Separator } from "@/components/ui/separator";
+import YouTubePlayer from "@/components/layout/videoplayer";
 
 const ImplementationPage = async ({ params }: ProjectPageProps) => {
   const { id } = await params;
@@ -23,73 +24,16 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
         description="Complete guide for implementing this production-ready project. Follow these detailed steps to build your own scalable infrastructure."
       />
       <Separator />
-      <section className="space-y-3">
-        <h1 className="text-2xl font-semibold">Sample Applications</h1>
-        <p className="text-muted-foreground">
-          Ready-to-deploy sample applications with complete GitOps configuration
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex flex-col space-y-1.5 p-6 pb-3">
-              <div className="space-y-2">
-                <h3 className="font-semibold tracking-tight text-lg">
-                  Node.js Microservice
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Complete Node.js application with Express, Docker, and
-                  Kubernetes manifests
-                </p>
-              </div>
-            </div>
-            <div className="p-6 pt-0 space-y-4">
-              <div className="flex flex-wrap gap-2">
-                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs">
-                  Node.js
-                </div>
-                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs">
-                  Express
-                </div>
-                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs">
-                  Docker
-                </div>
-                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs">
-                  Kubernetes
-                </div>
-              </div>
-              <div className="space-y-2">
-                <h5 className="font-medium text-sm">Features</h5>
-                <ul className="space-y-1">
-                  <li className="text-sm text-muted-foreground flex items-center">
-                    <CircleCheckBig className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
-                    Health checks
-                  </li>
-                  <li className="text-sm text-muted-foreground flex items-center">
-                    <CircleCheckBig className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
-                    Metrics endpoint
-                  </li>
-                  <li className="text-sm text-muted-foreground flex items-center">
-                    <CircleCheckBig className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
-                    Graceful shutdown
-                  </li>
-                  <li className="text-sm text-muted-foreground flex items-center">
-                    <CircleCheckBig className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
-                    Configuration management
-                  </li>
-                </ul>
-              </div>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
-                href="https://github.com/example/nodejs-microservice-template"
-              >
-                <Download className="h-4 w-4 mr-2" />
-                Download Template
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageContentSection title="Video Walkthrough">
+        <YouTubePlayer
+          videoUrl="https://www.youtube.com/watch?v=pJ9f7w4AxtU"
+          // width={800}
+          height={450}
+          autoplay={false}
+          controls={true}
+          mute={false}
+        />
+      </PageContentSection>
       <PageContentSection title="Implementation Phases">
         <div className="space-y-8">
           <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden">
@@ -329,6 +273,73 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
           </div>
         </div>
       </PageContentSection>
+      <section className="space-y-3">
+        <h1 className="text-2xl font-semibold">Sample Applications</h1>
+        <p className="text-muted-foreground">
+          Ready-to-deploy sample applications with complete GitOps configuration
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-lg border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow">
+            <div className="flex flex-col space-y-1.5 p-6 pb-3">
+              <div className="space-y-2">
+                <h3 className="font-semibold tracking-tight text-lg">
+                  Node.js Microservice
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Complete Node.js application with Express, Docker, and
+                  Kubernetes manifests
+                </p>
+              </div>
+            </div>
+            <div className="p-6 pt-0 space-y-4">
+              <div className="flex flex-wrap gap-2">
+                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs">
+                  Node.js
+                </div>
+                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs">
+                  Express
+                </div>
+                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs">
+                  Docker
+                </div>
+                <div className="inline-flex items-center rounded-full border px-2.5 py-0.5 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 text-xs">
+                  Kubernetes
+                </div>
+              </div>
+              <div className="space-y-2">
+                <h5 className="font-medium text-sm">Features</h5>
+                <ul className="space-y-1">
+                  <li className="text-sm text-muted-foreground flex items-center">
+                    <CircleCheckBig className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                    Health checks
+                  </li>
+                  <li className="text-sm text-muted-foreground flex items-center">
+                    <CircleCheckBig className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                    Metrics endpoint
+                  </li>
+                  <li className="text-sm text-muted-foreground flex items-center">
+                    <CircleCheckBig className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                    Graceful shutdown
+                  </li>
+                  <li className="text-sm text-muted-foreground flex items-center">
+                    <CircleCheckBig className="h-3 w-3 text-green-500 mr-2 flex-shrink-0" />
+                    Configuration management
+                  </li>
+                </ul>
+              </div>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+                href="https://github.com/example/nodejs-microservice-template"
+              >
+                <Download className="h-4 w-4 mr-2" />
+                Download Template
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
       <PageContentSection title="Explore Further">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <ExploreLessons id={id} />
