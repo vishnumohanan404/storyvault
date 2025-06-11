@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/card";
 import { client } from "@/sanity/client";
 import { ExternalLinkIcon, StarIcon } from "lucide-react";
-import { SanityDocument } from "next-sanity";
 import Link from "next/link";
 import React from "react";
+import { Project } from "../types";
 
 const PROJECTS_QUERY = `*[_type == "projects"]{ 
   _id, 
@@ -25,15 +25,6 @@ const PROJECTS_QUERY = `*[_type == "projects"]{
   createdOn }`;
 
 const options = { next: { revalidate: 30 } };
-type Project = {
-  _id: string;
-  title: string;
-  description: string;
-  badges: string[];
-  topic: string;
-  featured: boolean;
-  createdOn: string; // or Date if you parse it
-};
 
 const ProjectsPage = async () => {
   const projects = await client.fetch<Project[]>(PROJECTS_QUERY, {}, options);
@@ -46,10 +37,10 @@ const ProjectsPage = async () => {
               <CardAction className="flex justify-between gap-2">
                 {project.featured ? (
                   <Badge
-                    className="rounded-3xl border-green-400 bg-green-400/25"
+                    className="rounded-3xl border-amber-500/20 bg-amber-500/5"
                     variant="secondary"
                   >
-                    <StarIcon className="text-green-500" />
+                    <StarIcon className="text-amber-500" />
                     Featured
                   </Badge>
                 ) : (
