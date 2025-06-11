@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${manropeSans.variable} ${geistMono.variable} antialiased `}
       >
         <Navbar />
-        <main className="min-h-screen max-w-7xl mx-auto py-8">{children}</main>
+        {children}
         <Footer />
       </body>
     </html>
