@@ -8,7 +8,6 @@ import {
 import React from 'react';
 
 import ExploreKanban from '@/components/common/explore-cards/kanban';
-import ExploreLessons from '@/components/common/explore-cards/lessons';
 import PageContentSection from '@/components/layout/page-content-section';
 import PageHeaderSection from '@/components/layout/page-header-section';
 import YouTubePlayer from '@/components/layout/videoplayer';
@@ -162,8 +161,8 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                           </div>
                           <div className="bg-muted rounded-lg p-3 font-mono text-sm">
                             <code>
-                              git add . &amp;&amp; git commit -m &quot;Initial
-                              project structure&quot;
+                              git add . &amp;&amp; git commit -m "Initial
+                              project structure"
                             </code>
                           </div>
                         </div>

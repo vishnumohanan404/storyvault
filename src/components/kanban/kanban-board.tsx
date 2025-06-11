@@ -1,20 +1,17 @@
 'use client';
 
+import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core';
 import {
   DndContext,
-  DragEndEvent,
   DragOverlay,
-  DragStartEvent,
   PointerSensor,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import { arrayMove, SortableContext } from '@dnd-kit/sortable';
 import { Download, Github, RotateCcw } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -213,7 +210,10 @@ const defaultBoardData = {
     },
   ],
 };
-
+const exportToGitHub = () => {
+  // Placeholder for GitHub export functionality
+  toast.info('GitHub export will be available in Phase 2 with authentication');
+};
 export function KanbanBoard({ projectId = 'default' }: KanbanBoardProps) {
   const initialData =
     projectBoardData[projectId as keyof typeof projectBoardData] ||
@@ -269,12 +269,13 @@ export function KanbanBoard({ projectId = 'default' }: KanbanBoardProps) {
     const overId = over.id as string;
 
     // Find the active story
+    // eslint-disable-next-line unicorn/prefer-array-some
     const activeStory = boardData.stories.find(story => story.id === activeId);
     if (!activeStory) return;
 
     // Determine the target column
     let targetColumn = overId;
-    if (!boardData.columns.find(col => col.id === overId)) {
+    if (!boardData.columns.some(col => col.id === overId)) {
       // If dropped on a story, find its column
       const targetStory = boardData.stories.find(story => story.id === overId);
       if (targetStory) {
@@ -333,13 +334,6 @@ export function KanbanBoard({ projectId = 'default' }: KanbanBoardProps) {
     link.click();
     URL.revokeObjectURL(url);
     toast.success('Board exported as JSON file');
-  };
-
-  const exportToGitHub = () => {
-    // Placeholder for GitHub export functionality
-    toast.info(
-      'GitHub export will be available in Phase 2 with authentication',
-    );
   };
 
   if (!mounted) {

@@ -26,6 +26,15 @@ interface YouTubePlayer {
   pauseVideo: () => void;
 }
 
+// Extract YouTube video ID from URL
+const extractVideoId = (url: string): string | null => {
+  if (!url) return null;
+  const regExp =
+    /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+  const match = url.match(regExp);
+  return match && match[7].length === 11 ? match[7] : null;
+};
+
 const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   videoUrl,
   width = '100%',
@@ -38,15 +47,6 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   const [videoId, setVideoId] = useState<string | null>(null);
   const [playerReady, setPlayerReady] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  // Extract YouTube video ID from URL
-  const extractVideoId = (url: string): string | null => {
-    if (!url) return null;
-    const regExp =
-      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    const match = url.match(regExp);
-    return match && match[7].length === 11 ? match[7] : null;
-  };
 
   // Load YouTube IFrame API
   useEffect(() => {
@@ -88,6 +88,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
         playerRef.current.destroy();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Extract video ID when URL changes
@@ -107,6 +108,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
         initializePlayer();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoId, isLoading]);
 
   const initializePlayer = (): void => {

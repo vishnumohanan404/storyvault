@@ -23,6 +23,7 @@ const ResourcePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsList, setPostsList] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line unicorn/no-null
   const [error, setError] = useState<string | null>(null);
 
   const postsPerPage = 3;
@@ -30,6 +31,7 @@ const ResourcePage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
+      // eslint-disable-next-line unicorn/no-null
       setError(null);
 
       try {

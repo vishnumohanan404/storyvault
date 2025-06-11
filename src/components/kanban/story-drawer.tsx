@@ -4,25 +4,16 @@ import {
   Calendar,
   CheckCircle,
   Clock,
-  Edit,
   FileText,
   Flag,
   Tag,
   Target,
   User,
-  X,
 } from 'lucide-react';
-import { useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import {
   Sheet,
@@ -203,8 +194,6 @@ export function StoryDrawer({
   onClose,
   onUpdate,
 }: StoryDrawerProps) {
-  const [isEditing, setIsEditing] = useState(false);
-
   if (!story) return null;
 
   const extendedStory = getExtendedStoryData(story);

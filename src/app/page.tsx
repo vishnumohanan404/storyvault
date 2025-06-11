@@ -1,4 +1,3 @@
-import { Separator } from '@radix-ui/react-separator';
 import {
   ArrowRight,
   BookOpen,
