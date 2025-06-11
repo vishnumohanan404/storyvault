@@ -1,15 +1,15 @@
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { GripVertical, Clock } from "lucide-react";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { GripVertical, Clock } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface Story {
   id: string;
@@ -27,9 +27,9 @@ interface KanbanCardProps {
 }
 
 const labelColors = {
-  S: "bg-green-500/10 text-green-700 dark:text-green-400",
-  M: "bg-yellow-500/10 text-yellow-700 dark:text-yellow-400",
-  L: "bg-red-500/10 text-red-700 dark:text-red-400",
+  S: 'bg-green-500/10 text-green-700 dark:text-green-400',
+  M: 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400',
+  L: 'bg-red-500/10 text-red-700 dark:text-red-400',
 };
 
 export function KanbanCard({ story, onClick }: KanbanCardProps) {
@@ -52,7 +52,7 @@ export function KanbanCard({ story, onClick }: KanbanCardProps) {
     if (
       !isDragging &&
       onClick &&
-      !(e.target as HTMLElement).closest("[data-drag-handle]")
+      !(e.target as HTMLElement).closest('[data-drag-handle]')
     ) {
       onClick();
     }
@@ -63,8 +63,8 @@ export function KanbanCard({ story, onClick }: KanbanCardProps) {
       ref={setNodeRef}
       style={style}
       className={cn(
-        "cursor-grab active:cursor-grabbing transition-shadow hover:shadow-md",
-        isDragging && "opacity-50 shadow-lg",
+        'cursor-grab transition-shadow hover:shadow-md active:cursor-grabbing',
+        isDragging && 'opacity-50 shadow-lg',
       )}
       {...attributes}
       {...listeners}
@@ -72,25 +72,25 @@ export function KanbanCard({ story, onClick }: KanbanCardProps) {
     >
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between">
-          <CardTitle className="text-sm font-medium leading-tight">
+          <CardTitle className="text-sm leading-tight font-medium">
             {story.title}
           </CardTitle>
-          <GripVertical className="h-4 w-4 text-muted-foreground flex-shrink-0 ml-2" />
+          <GripVertical className="text-muted-foreground ml-2 h-4 w-4 flex-shrink-0" />
         </div>
       </CardHeader>
-      <CardContent className="pt-0 space-y-3">
+      <CardContent className="space-y-3 pt-0">
         {/* <CardDescription className="text-xs leading-relaxed">
           {story.description}
         </CardDescription> */}
 
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            {story.labels.map((label) => (
+            {story.labels.map(label => (
               <Badge
                 key={label}
                 variant="secondary"
                 className={cn(
-                  "text-xs px-1.5 py-0.5",
+                  'px-1.5 py-0.5 text-xs',
                   labelColors[label as keyof typeof labelColors],
                 )}
               >
@@ -99,7 +99,7 @@ export function KanbanCard({ story, onClick }: KanbanCardProps) {
             ))}
           </div>
 
-          <div className="flex items-center space-x-1 text-xs text-muted-foreground">
+          <div className="text-muted-foreground flex items-center space-x-1 text-xs">
             <Clock className="h-3 w-3" />
             <span>{story.estimate}</span>
           </div>
@@ -109,7 +109,7 @@ export function KanbanCard({ story, onClick }: KanbanCardProps) {
           <Badge variant="outline" className="text-xs">
             {story.status}
           </Badge>
-          <span className="text-xs text-muted-foreground font-mono">
+          <span className="text-muted-foreground font-mono text-xs">
             {story.id.toUpperCase()}
           </span>
         </div>

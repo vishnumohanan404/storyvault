@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import PageContentSection from "@/components/layout/page-content-section";
-import PageHeaderSection from "@/components/layout/page-header-section";
-import { Separator } from "@/components/ui/separator";
+import PageContentSection from '@/components/layout/page-content-section';
+import PageHeaderSection from '@/components/layout/page-header-section';
+import { Separator } from '@/components/ui/separator';
 import {
   Pagination,
   PaginationContent,
@@ -11,11 +11,11 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
-import React, { useState, useEffect } from "react";
-import { BlogPost } from "../types";
-import Image from "next/image";
-import { Skeleton } from "@/components/ui/skeleton";
+} from '@/components/ui/pagination';
+import React, { useState, useEffect } from 'react';
+import { BlogPost } from '../types';
+import Image from 'next/image';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const ResourcePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,10 +53,10 @@ const ResourcePage = () => {
               }
           }`;
 
-        const response = await fetch("https://gql.hashnode.com/", {
-          method: "POST",
+        const response = await fetch('https://gql.hashnode.com/', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ query }),
         });
@@ -72,8 +72,8 @@ const ResourcePage = () => {
           !result.data.publication ||
           !result.data.publication.posts
         ) {
-          console.error("GraphQL response structure:", result);
-          throw new Error("Invalid response structure from Hashnode API");
+          console.error('GraphQL response structure:', result);
+          throw new Error('Invalid response structure from Hashnode API');
         }
 
         const { data } = result;
@@ -83,7 +83,7 @@ const ResourcePage = () => {
 
         setPostsList(allPosts);
       } catch (error) {
-        console.error("Error fetching blog posts:", error);
+        console.error('Error fetching blog posts:', error);
         setError(
           "Sorry, we couldn't load the blog posts at the moment. Please try again later.",
         );
@@ -116,21 +116,21 @@ const ResourcePage = () => {
         for (let i = 1; i <= 4; i++) {
           pages.push(i);
         }
-        pages.push("ellipsis");
+        pages.push('ellipsis');
         pages.push(totalPages);
       } else if (currentPage >= totalPages - 2) {
         pages.push(1);
-        pages.push("ellipsis");
+        pages.push('ellipsis');
         for (let i = totalPages - 3; i <= totalPages; i++) {
           pages.push(i);
         }
       } else {
         pages.push(1);
-        pages.push("ellipsis");
+        pages.push('ellipsis');
         for (let i = currentPage - 1; i <= currentPage + 1; i++) {
           pages.push(i);
         }
-        pages.push("ellipsis");
+        pages.push('ellipsis');
         pages.push(totalPages);
       }
     }
@@ -143,32 +143,32 @@ const ResourcePage = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // Smooth scroll to top of the posts section
-    const postsSection = document.getElementById("posts-section");
+    const postsSection = document.getElementById('posts-section');
     if (postsSection) {
-      postsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      postsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
   if (loading) {
     return (
-      <main className="space-y-8 mb-5">
+      <main className="mb-5 space-y-8">
         <PageHeaderSection
           title="Explore Resources"
           description="A handpicked collection of tutorials, articles, videos, and tools I've found valuable throughout my journey — regularly updated and thoughtfully organized."
         />
         <Separator />
         <PageContentSection title="My blogs">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {/* Loading skeleton */}
             {Array.from({ length: 3 }).map((_, index) => (
               <div
                 key={index}
-                className="rounded-lg border bg-card shadow-sm overflow-hidden animate-pulse"
+                className="bg-card animate-pulse overflow-hidden rounded-lg border shadow-sm"
               >
                 <Skeleton className="h-40 w-full rounded-t-2xl rounded-b-none" />
                 <div className="flex flex-col space-y-1.5 p-6">
-                  <Skeleton className="h-5 w-[250px] font-semibold tracking-tight text-lg line-clamp-2" />
-                  <Skeleton className="h-5 w-[200px] mb-4 font-semibold tracking-tight text-lg line-clamp-2" />
+                  <Skeleton className="line-clamp-2 h-5 w-[250px] text-lg font-semibold tracking-tight" />
+                  <Skeleton className="mb-4 line-clamp-2 h-5 w-[200px] text-lg font-semibold tracking-tight" />
                   <Skeleton className="h-4 w-[160px]" />
                   <Skeleton className="h-4 w-[180px]" />
                   <Skeleton className="h-4 w-[200px]" />
@@ -183,18 +183,18 @@ const ResourcePage = () => {
 
   if (error) {
     return (
-      <main className="space-y-8 mb-5">
+      <main className="mb-5 space-y-8">
         <PageHeaderSection
           title="Explore Resources"
           description="A handpicked collection of tutorials, articles, videos, and tools I've found valuable throughout my journey — regularly updated and thoughtfully organized."
         />
         <Separator />
         <PageContentSection title="My blogs">
-          <div className="text-center py-8">
+          <div className="py-8 text-center">
             <p className="text-gray-500">{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              className="mt-4 rounded bg-blue-500 px-4 py-2 text-white transition-colors hover:bg-blue-600"
             >
               Try Again
             </button>
@@ -205,7 +205,7 @@ const ResourcePage = () => {
   }
 
   return (
-    <main className="space-y-8 mb-5">
+    <main className="mb-5 space-y-8">
       <PageHeaderSection
         title="Explore Resources"
         description="A handpicked collection of tutorials, articles, videos, and tools I've found valuable throughout my journey — regularly updated and thoughtfully organized."
@@ -214,16 +214,16 @@ const ResourcePage = () => {
       <PageContentSection title="My blogs">
         <div className="space-y-6" id="posts-section">
           {/* Blog posts grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {currentPosts.map((post) => (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {currentPosts.map(post => (
               <div
                 key={post.id}
-                className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                className="bg-card text-card-foreground overflow-hidden rounded-lg border shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="relative w-full h-40">
+                <div className="relative h-40 w-full">
                   <Image
                     src={post.coverImage.url}
-                    alt={post.title || "Blog post cover image"}
+                    alt={post.title || 'Blog post cover image'}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -232,10 +232,10 @@ const ResourcePage = () => {
                 </div>
 
                 <div className="flex flex-col space-y-1.5 p-6">
-                  <h3 className="font-semibold tracking-tight text-lg line-clamp-2">
+                  <h3 className="line-clamp-2 text-lg font-semibold tracking-tight">
                     {post.title}
                   </h3>
-                  <p className="text-gray-700 text-base line-clamp-3">
+                  <p className="line-clamp-3 text-base text-gray-700">
                     {post.subtitle}
                   </p>
                 </div>
@@ -243,13 +243,13 @@ const ResourcePage = () => {
             ))}
           </div>
 
-          <div className="flex gap-6 items-center justify-end mt-8">
+          <div className="mt-8 flex items-center justify-end gap-6">
             <div className="text-center text-sm text-gray-500">
-              Showing {startIndex + 1} to {Math.min(endIndex, totalPosts)} of{" "}
+              Showing {startIndex + 1} to {Math.min(endIndex, totalPosts)} of{' '}
               {totalPosts} posts
             </div>
             {totalPages > 1 && (
-              <div className="flex justify-center ">
+              <div className="flex justify-center">
                 <Pagination>
                   <PaginationContent>
                     {/* Previous button */}
@@ -265,7 +265,7 @@ const ResourcePage = () => {
                     {/* Page numbers */}
                     {pageNumbers.map((pageNum, index) => (
                       <PaginationItem key={index}>
-                        {pageNum === "ellipsis" ? (
+                        {pageNum === 'ellipsis' ? (
                           <PaginationEllipsis />
                         ) : (
                           <PaginationLink

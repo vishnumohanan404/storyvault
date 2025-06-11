@@ -1,5 +1,5 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardAction,
@@ -8,12 +8,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { client } from "@/sanity/client";
-import { ExternalLinkIcon, StarIcon } from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import { Project } from "../types";
+} from '@/components/ui/card';
+import { client } from '@/sanity/client';
+import { ExternalLinkIcon, StarIcon } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
+import { Project } from '../types';
 
 const PROJECTS_QUERY = `*[_type == "projects"]{ 
   _id, 
@@ -30,8 +30,8 @@ const ProjectsPage = async () => {
   const projects = await client.fetch<Project[]>(PROJECTS_QUERY, {}, options);
   return (
     <div className="w-[100%]">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.map((project) => (
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map(project => (
           <Card key={project._id} className="hover:shadow-accent">
             <CardHeader className="flex flex-col space-y-2">
               <CardAction className="flex justify-between gap-2">
@@ -46,12 +46,12 @@ const ProjectsPage = async () => {
                 ) : (
                   <></>
                 )}
-                <Badge className="rounded-3xl border-chart-1" variant="outline">
+                <Badge className="border-chart-1 rounded-3xl" variant="outline">
                   {project.topic}
                 </Badge>
               </CardAction>
               <CardTitle>
-                <h3 className="font-semibold tracking-tight text-xl">
+                <h3 className="text-xl font-semibold tracking-tight">
                   {project.title}
                 </h3>
               </CardTitle>
@@ -63,7 +63,7 @@ const ProjectsPage = async () => {
             </CardHeader>
             <CardContent>
               <div className="flex gap-1">
-                {project.badges.slice(0, 2).map((badge) => (
+                {project.badges.slice(0, 2).map(badge => (
                   <Badge
                     className="rounded-3xl"
                     variant="secondary"
@@ -90,7 +90,7 @@ const ProjectsPage = async () => {
                   <Button
                     variant="secondary"
                     size="sm"
-                    className="hover:cursor-pointer flex items-center"
+                    className="flex items-center hover:cursor-pointer"
                   >
                     Kanban
                     <ExternalLinkIcon />

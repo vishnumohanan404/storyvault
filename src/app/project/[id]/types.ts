@@ -46,7 +46,7 @@ export interface SystemArchitecture {
   _createdAt: string;
   project: {
     _ref: string;
-    _type: "reference";
+    _type: 'reference';
   };
   title: string;
   description: string;
@@ -83,13 +83,13 @@ export interface SchemaField {
 
 // userstories page
 export type UserStoryStatus =
-  | "Backlog"
-  | "Ready"
-  | "In Progress"
-  | "In Review"
-  | "Completed";
-export type UserStorySize = "large" | "medium" | "small";
-export type UserStoryPriority = "low" | "medium" | "high";
+  | 'Backlog'
+  | 'Ready'
+  | 'In Progress'
+  | 'In Review'
+  | 'Completed';
+export type UserStorySize = 'large' | 'medium' | 'small';
+export type UserStoryPriority = 'low' | 'medium' | 'high';
 export interface UserStory {
   storyId: string;
   title: string;

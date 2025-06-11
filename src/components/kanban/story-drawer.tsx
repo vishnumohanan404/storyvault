@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/sheet';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Clock,
   Target,
@@ -29,8 +29,8 @@ import {
   FileText,
   Edit,
   X,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface Story {
   id: string;
@@ -57,135 +57,135 @@ interface StoryDrawerProps {
 }
 
 const labelColors = {
-  S: "bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20",
-  M: "bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border-yellow-500/20",
-  L: "bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20",
+  S: 'bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20',
+  M: 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border-yellow-500/20',
+  L: 'bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20',
 };
 
 const statusColors = {
   Complete:
-    "bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20",
-  "In Progress":
-    "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20",
+    'bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20',
+  'In Progress':
+    'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20',
   Ready:
-    "bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20",
-  Draft: "bg-gray-500/10 text-gray-700 dark:text-gray-400 border-gray-500/20",
+    'bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20',
+  Draft: 'bg-gray-500/10 text-gray-700 dark:text-gray-400 border-gray-500/20',
 };
 
 const priorityColors = {
-  High: "text-red-600 dark:text-red-400",
-  Medium: "text-yellow-600 dark:text-yellow-400",
-  Low: "text-green-600 dark:text-green-400",
+  High: 'text-red-600 dark:text-red-400',
+  Medium: 'text-yellow-600 dark:text-yellow-400',
+  Low: 'text-green-600 dark:text-green-400',
 };
 
 // Extended story data with additional details
 const getExtendedStoryData = (story: Story) => {
   const baseData = {
     acceptanceCriteria: [
-      "Feature should be fully functional",
-      "All tests should pass",
-      "Documentation should be updated",
-      "Code review should be completed",
+      'Feature should be fully functional',
+      'All tests should pass',
+      'Documentation should be updated',
+      'Code review should be completed',
     ],
     tasks: [
-      "Research and planning",
-      "Implementation",
-      "Testing",
-      "Documentation",
+      'Research and planning',
+      'Implementation',
+      'Testing',
+      'Documentation',
     ],
-    priority: "Medium",
-    assignee: "DevOps Team",
-    reporter: "Product Owner",
-    created: "2024-01-01",
-    updated: "2024-01-15",
+    priority: 'Medium',
+    assignee: 'DevOps Team',
+    reporter: 'Product Owner',
+    created: '2024-01-01',
+    updated: '2024-01-15',
   };
 
   // Project-specific story details
   const storyDetails: Record<string, Partial<Story>> = {
     us1: {
       acceptanceCriteria: [
-        "GitLab repository created with proper naming convention",
-        "Branch protection rules configured for main branch",
-        "Initial README and documentation structure in place",
-        "GitOps workflow directory structure established",
+        'GitLab repository created with proper naming convention',
+        'Branch protection rules configured for main branch',
+        'Initial README and documentation structure in place',
+        'GitOps workflow directory structure established',
       ],
       tasks: [
-        "Create GitLab repository",
-        "Configure branch protection",
-        "Set up initial documentation",
-        "Create GitOps directory structure",
+        'Create GitLab repository',
+        'Configure branch protection',
+        'Set up initial documentation',
+        'Create GitOps directory structure',
       ],
-      priority: "High",
-      assignee: "DevOps Engineer",
-      reporter: "Tech Lead",
+      priority: 'High',
+      assignee: 'DevOps Engineer',
+      reporter: 'Tech Lead',
     },
     us2: {
       acceptanceCriteria: [
-        "Terraform modules created for VPC and networking",
-        "EKS cluster configuration with proper node groups",
-        "IAM roles and policies defined",
-        "State management configured with S3 backend",
+        'Terraform modules created for VPC and networking',
+        'EKS cluster configuration with proper node groups',
+        'IAM roles and policies defined',
+        'State management configured with S3 backend',
       ],
       tasks: [
-        "Design VPC and networking architecture",
-        "Create Terraform modules for infrastructure",
-        "Configure EKS cluster with node groups",
-        "Set up Terraform state management",
+        'Design VPC and networking architecture',
+        'Create Terraform modules for infrastructure',
+        'Configure EKS cluster with node groups',
+        'Set up Terraform state management',
       ],
-      priority: "High",
-      assignee: "Infrastructure Engineer",
-      reporter: "Solutions Architect",
+      priority: 'High',
+      assignee: 'Infrastructure Engineer',
+      reporter: 'Solutions Architect',
     },
     us3: {
       acceptanceCriteria: [
-        "GitLab CI/CD pipeline configured with multiple stages",
-        "Automated testing integrated into pipeline",
-        "Docker image building and pushing to registry",
-        "Security scanning integrated",
+        'GitLab CI/CD pipeline configured with multiple stages',
+        'Automated testing integrated into pipeline',
+        'Docker image building and pushing to registry',
+        'Security scanning integrated',
       ],
       tasks: [
-        "Create .gitlab-ci.yml configuration",
-        "Set up automated testing stage",
-        "Configure Docker image building",
-        "Integrate security scanning",
+        'Create .gitlab-ci.yml configuration',
+        'Set up automated testing stage',
+        'Configure Docker image building',
+        'Integrate security scanning',
       ],
-      priority: "High",
-      assignee: "DevOps Engineer",
-      reporter: "Development Team",
+      priority: 'High',
+      assignee: 'DevOps Engineer',
+      reporter: 'Development Team',
     },
     us4: {
       acceptanceCriteria: [
-        "ArgoCD installed on EKS cluster",
-        "RBAC configured for team access",
-        "Git repository connected to ArgoCD",
-        "Application deployment templates created",
+        'ArgoCD installed on EKS cluster',
+        'RBAC configured for team access',
+        'Git repository connected to ArgoCD',
+        'Application deployment templates created',
       ],
       tasks: [
-        "Install ArgoCD on EKS cluster",
-        "Configure RBAC and user access",
-        "Connect Git repository",
-        "Create application templates",
+        'Install ArgoCD on EKS cluster',
+        'Configure RBAC and user access',
+        'Connect Git repository',
+        'Create application templates',
       ],
-      priority: "High",
-      assignee: "Platform Engineer",
-      reporter: "DevOps Lead",
+      priority: 'High',
+      assignee: 'Platform Engineer',
+      reporter: 'DevOps Lead',
     },
     us5: {
       acceptanceCriteria: [
-        "Sample application deployed via ArgoCD",
-        "Application accessible through ingress",
-        "Health checks and monitoring configured",
-        "Rollback capability tested",
+        'Sample application deployed via ArgoCD',
+        'Application accessible through ingress',
+        'Health checks and monitoring configured',
+        'Rollback capability tested',
       ],
       tasks: [
-        "Create application manifests",
-        "Deploy via ArgoCD",
-        "Configure ingress and networking",
-        "Test rollback functionality",
+        'Create application manifests',
+        'Deploy via ArgoCD',
+        'Configure ingress and networking',
+        'Test rollback functionality',
       ],
-      priority: "Medium",
-      assignee: "Application Developer",
-      reporter: "Product Owner",
+      priority: 'Medium',
+      assignee: 'Application Developer',
+      reporter: 'Product Owner',
     },
   };
 
@@ -216,9 +216,9 @@ export function StoryDrawer({
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent className="w-full sm:max-w-2xl overflow-y-auto ">
+      <SheetContent className="w-full overflow-y-auto sm:max-w-2xl">
         <SheetHeader className="space-y-4 px-6">
-          <div className="flex items-start justify-between ">
+          <div className="flex items-start justify-between">
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <Badge variant="outline" className="font-mono text-xs">
@@ -234,7 +234,7 @@ export function StoryDrawer({
                   {extendedStory.status}
                 </Badge>
               </div>
-              <SheetTitle className="text-2xl leading-tight pr-8">
+              <SheetTitle className="pr-8 text-2xl leading-tight">
                 {extendedStory.title}
               </SheetTitle>
             </div>
@@ -249,8 +249,8 @@ export function StoryDrawer({
           <div className="grid grid-cols-2 gap-4 px-6">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm flex items-center">
-                  <Clock className="h-4 w-4 mr-2" />
+                <CardTitle className="flex items-center text-sm">
+                  <Clock className="mr-2 h-4 w-4" />
                   Estimate
                 </CardTitle>
               </CardHeader>
@@ -263,15 +263,15 @@ export function StoryDrawer({
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm flex items-center">
-                  <Flag className="h-4 w-4 mr-2" />
+                <CardTitle className="flex items-center text-sm">
+                  <Flag className="mr-2 h-4 w-4" />
                   Priority
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div
                   className={cn(
-                    "text-lg font-semibold",
+                    'text-lg font-semibold',
                     priorityColors[
                       extendedStory.priority as keyof typeof priorityColors
                     ],
@@ -285,22 +285,22 @@ export function StoryDrawer({
 
           {/* Labels */}
           <div className="space-y-3 px-6">
-            <h3 className="font-semibold flex items-center">
-              <Tag className="h-4 w-4 mr-2" />
+            <h3 className="flex items-center font-semibold">
+              <Tag className="mr-2 h-4 w-4" />
               Labels
             </h3>
             <div className="flex flex-wrap gap-2">
-              {extendedStory.labels.map((label) => (
+              {extendedStory.labels.map(label => (
                 <Badge
                   key={label}
                   className={cn(
-                    "px-3 py-1",
+                    'px-3 py-1',
                     labelColors[label as keyof typeof labelColors],
                   )}
                 >
-                  {label === "S" && "Small"}
-                  {label === "M" && "Medium"}
-                  {label === "L" && "Large"}
+                  {label === 'S' && 'Small'}
+                  {label === 'M' && 'Medium'}
+                  {label === 'L' && 'Large'}
                 </Badge>
               ))}
             </div>
@@ -309,28 +309,28 @@ export function StoryDrawer({
           <Separator />
 
           {/* People */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-6">
+          <div className="grid grid-cols-1 gap-6 px-6 sm:grid-cols-2">
             <div className="space-y-3">
-              <h3 className="font-semibold flex items-center">
-                <User className="h-4 w-4 mr-2" />
+              <h3 className="flex items-center font-semibold">
+                <User className="mr-2 h-4 w-4" />
                 Assignee
               </h3>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <User className="h-4 w-4 text-primary" />
+                <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full">
+                  <User className="text-primary h-4 w-4" />
                 </div>
                 <span className="text-sm">{extendedStory.assignee}</span>
               </div>
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-semibold flex items-center">
-                <User className="h-4 w-4 mr-2" />
+              <h3 className="flex items-center font-semibold">
+                <User className="mr-2 h-4 w-4" />
                 Reporter
               </h3>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
-                  <User className="h-4 w-4 text-muted-foreground" />
+                <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-full">
+                  <User className="text-muted-foreground h-4 w-4" />
                 </div>
                 <span className="text-sm">{extendedStory.reporter}</span>
               </div>
@@ -341,17 +341,17 @@ export function StoryDrawer({
 
           {/* Acceptance Criteria */}
           <div className="space-y-4 px-6">
-            <h3 className="font-semibold flex items-center">
-              <Target className="h-4 w-4 mr-2" />
+            <h3 className="flex items-center font-semibold">
+              <Target className="mr-2 h-4 w-4" />
               Acceptance Criteria
             </h3>
             <div className="space-y-3">
               {extendedStory.acceptanceCriteria?.map((criteria, index) => (
                 <div
                   key={index}
-                  className="flex items-start space-x-3 p-3 rounded-lg bg-muted/30"
+                  className="bg-muted/30 flex items-start space-x-3 rounded-lg p-3"
                 >
-                  <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
                   <span className="text-sm leading-relaxed">{criteria}</span>
                 </div>
               ))}
@@ -362,17 +362,17 @@ export function StoryDrawer({
 
           {/* Tasks */}
           <div className="space-y-4 px-6">
-            <h3 className="font-semibold flex items-center">
-              <FileText className="h-4 w-4 mr-2" />
+            <h3 className="flex items-center font-semibold">
+              <FileText className="mr-2 h-4 w-4" />
               Implementation Tasks
             </h3>
             <div className="grid grid-cols-1 gap-2">
               {extendedStory.tasks?.map((task, index) => (
                 <div
                   key={index}
-                  className="flex items-center space-x-3 p-3 rounded-lg bg-muted/30"
+                  className="bg-muted/30 flex items-center space-x-3 rounded-lg p-3"
                 >
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                  <CheckCircle className="h-4 w-4 flex-shrink-0 text-green-500" />
                   <span className="text-sm">{task}</span>
                 </div>
               ))}
@@ -382,51 +382,51 @@ export function StoryDrawer({
           <Separator />
 
           {/* Timestamps */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div className="space-y-2 px-6">
-              <h4 className="font-medium text-sm flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
+              <h4 className="flex items-center text-sm font-medium">
+                <Calendar className="mr-2 h-4 w-4" />
                 Created
               </h4>
-              <p className="text-sm text-muted-foreground">
-                {new Date(extendedStory.created!).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
+              <p className="text-muted-foreground text-sm">
+                {new Date(extendedStory.created!).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
                 })}
               </p>
             </div>
 
             <div className="space-y-2">
-              <h4 className="font-medium text-sm flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
+              <h4 className="flex items-center text-sm font-medium">
+                <Calendar className="mr-2 h-4 w-4" />
                 Last Updated
               </h4>
-              <p className="text-sm text-muted-foreground">
-                {new Date(extendedStory.updated!).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
+              <p className="text-muted-foreground text-sm">
+                {new Date(extendedStory.updated!).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
                 })}
               </p>
             </div>
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-3 p-6 border-t">
+          <div className="flex flex-col gap-3 border-t p-6 sm:flex-row">
             <Button
               variant="outline"
               className="flex-1"
-              onClick={() => handleStatusChange("In Progress")}
-              disabled={extendedStory.status === "In Progress"}
+              onClick={() => handleStatusChange('In Progress')}
+              disabled={extendedStory.status === 'In Progress'}
             >
               Move to In Progress
             </Button>
             <Button
               variant="outline"
               className="flex-1"
-              onClick={() => handleStatusChange("Complete")}
-              disabled={extendedStory.status === "Complete"}
+              onClick={() => handleStatusChange('Complete')}
+              disabled={extendedStory.status === 'Complete'}
             >
               Mark Complete
             </Button>

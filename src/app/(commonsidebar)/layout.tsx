@@ -1,33 +1,33 @@
-"use client";
-import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
+'use client';
+import { cn } from '@/lib/utils';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
 
 const sidebarMenu = [
   {
-    title: "Featured",
+    title: 'Featured',
     menu: [
       {
-        title: "Projects",
-        href: "/projects",
-        description: "Explore our complete collection of projects",
+        title: 'Projects',
+        href: '/projects',
+        description: 'Explore our complete collection of projects',
       },
       {
-        title: "Resources",
-        href: "/resources",
-        description: "Explore resources to help you get started",
+        title: 'Resources',
+        href: '/resources',
+        description: 'Explore resources to help you get started',
       },
     ],
   },
   {
-    title: "Others",
+    title: 'Others',
     menu: [
       {
-        title: "Changelogs",
-        href: "/changelogs",
-        description: "Current version: v1.0.0",
+        title: 'Changelogs',
+        href: '/changelogs',
+        description: 'Current version: v1.0.0',
       },
     ],
   },
@@ -40,31 +40,31 @@ const CommonSidebarLayout = ({
 }>) => {
   const pathname = usePathname();
   return (
-    <main className="min-h-screen max-w-7xl mx-auto py-8">
+    <main className="mx-auto min-h-screen max-w-7xl py-8">
       <div className="flex space-x-14">
         <aside className="w-74 shrink-0">
           <ScrollArea>
             <div className="space-y-6">
-              {sidebarMenu.map((menuItems) => (
+              {sidebarMenu.map(menuItems => (
                 <div className="space-y-3" key={menuItems.title}>
-                  <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wider">
+                  <h4 className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
                     {menuItems.title}
                   </h4>
                   <div className="space-y-1">
-                    {menuItems.menu.map((item) => (
+                    {menuItems.menu.map(item => (
                       <Link
                         key={item.href}
                         href={item.href}
                         className={cn(
-                          "block rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground",
+                          'hover:bg-accent hover:text-accent-foreground block rounded-md px-3 py-2 text-sm transition-colors',
                           item.href === pathname
-                            ? "bg-accent text-accent-foreground font-medium"
-                            : "text-muted-foreground",
+                            ? 'bg-accent text-accent-foreground font-medium'
+                            : 'text-muted-foreground',
                         )}
                       >
                         <div className="space-y-1">
                           <div>{item.title}</div>
-                          <div className="text-xs text-muted-foreground">
+                          <div className="text-muted-foreground text-xs">
                             {item.description}
                           </div>
                         </div>

@@ -1,12 +1,12 @@
-import { useDroppable } from "@dnd-kit/core";
+import { useDroppable } from '@dnd-kit/core';
 import {
   SortableContext,
   verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { KanbanCard } from "./kanban-card";
-import { cn } from "@/lib/utils";
+} from '@dnd-kit/sortable';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { KanbanCard } from './kanban-card';
+import { cn } from '@/lib/utils';
 
 interface Column {
   id: string;
@@ -31,11 +31,11 @@ interface KanbanColumnProps {
 }
 
 const colorMap = {
-  gray: "bg-gray-500",
-  blue: "bg-blue-500",
-  yellow: "bg-yellow-500",
-  purple: "bg-purple-500",
-  green: "bg-green-500",
+  gray: 'bg-gray-500',
+  blue: 'bg-blue-500',
+  yellow: 'bg-yellow-500',
+  purple: 'bg-purple-500',
+  green: 'bg-green-500',
 };
 
 export function KanbanColumn({
@@ -50,8 +50,8 @@ export function KanbanColumn({
   return (
     <Card
       className={cn(
-        "h-fit transition-colors",
-        isOver && "ring-2 ring-primary ring-offset-2",
+        'h-fit transition-colors',
+        isOver && 'ring-primary ring-2 ring-offset-2',
       )}
     >
       <CardHeader className="pb-3">
@@ -59,9 +59,9 @@ export function KanbanColumn({
           <div className="flex items-center space-x-2">
             <div
               className={cn(
-                "w-3 h-3 rounded-full",
+                'h-3 w-3 rounded-full',
                 colorMap[column.color as keyof typeof colorMap] ||
-                  "bg-gray-500",
+                  'bg-gray-500',
               )}
             />
             <span>{column.title}</span>
@@ -72,12 +72,12 @@ export function KanbanColumn({
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-0">
-        <div ref={setNodeRef} className="space-y-3 min-h-[200px]">
+        <div ref={setNodeRef} className="min-h-[200px] space-y-3">
           <SortableContext
-            items={stories.map((story) => story.id)}
+            items={stories.map(story => story.id)}
             strategy={verticalListSortingStrategy}
           >
-            {stories.map((story) => (
+            {stories.map(story => (
               <KanbanCard
                 key={story.id}
                 story={story}
@@ -87,7 +87,7 @@ export function KanbanColumn({
           </SortableContext>
 
           {stories.length === 0 && (
-            <div className="flex items-center justify-center h-32 text-muted-foreground text-sm border-2 border-dashed border-muted rounded-lg">
+            <div className="text-muted-foreground border-muted flex h-32 items-center justify-center rounded-lg border-2 border-dashed text-sm">
               Drop stories here
             </div>
           )}

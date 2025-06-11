@@ -1,12 +1,12 @@
-import ExploreArchitecture from "@/components/common/explore-cards/architecture";
-import ExploreUserstories from "@/components/common/explore-cards/userstories";
-import PageContentSection from "@/components/layout/page-content-section";
-import PageHeaderSection from "@/components/layout/page-header-section";
-import { client } from "@/sanity/client";
-import { TargetIcon, UsersIcon, ZapIcon } from "lucide-react";
-import React from "react";
-import { Project, ProjectPageProps } from "./types";
-import { Separator } from "@/components/ui/separator";
+import ExploreArchitecture from '@/components/common/explore-cards/architecture';
+import ExploreUserstories from '@/components/common/explore-cards/userstories';
+import PageContentSection from '@/components/layout/page-content-section';
+import PageHeaderSection from '@/components/layout/page-header-section';
+import { client } from '@/sanity/client';
+import { TargetIcon, UsersIcon, ZapIcon } from 'lucide-react';
+import React from 'react';
+import { Project, ProjectPageProps } from './types';
+import { Separator } from '@/components/ui/separator';
 
 const PROJECT_OVERVIEW_QUERY = `
   *[_type == "overview" && project._ref == $projectId][0]{
@@ -39,13 +39,13 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
   });
   if (!projectData) {
     return (
-      <div className="text-red-500 text-center text-xl py-10">
+      <div className="py-10 text-center text-xl text-red-500">
         Project not found.
       </div>
     );
   }
   return (
-    <main className="space-y-8 mb-5">
+    <main className="mb-5 space-y-8">
       <PageHeaderSection
         title={projectData.title}
         description={projectData.description}
@@ -53,15 +53,15 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
       />
       <Separator />
       <PageContentSection title="Goals">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {projectData.goals.primary && (
-            <div className="rounded-lg border bg-card text-card-foreground shadow-sm relative overflow-hidden">
+            <div className="bg-card text-card-foreground relative overflow-hidden rounded-lg border shadow-sm">
               <div className="flex flex-col space-y-1.5 p-6 pb-3">
                 <div className="flex items-center space-x-3">
-                  <div className="p-2 rounded-lg bg-primary/10">
+                  <div className="bg-primary/10 rounded-lg p-2">
                     <TargetIcon className="h-5 w-5" />
                   </div>
-                  <h3 className="font-semibold tracking-tight text-lg">
+                  <h3 className="text-lg font-semibold tracking-tight">
                     Primary Goal
                   </h3>
                 </div>
@@ -73,13 +73,13 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
               </div>
             </div>
           )}
-          <div className="rounded-lg border bg-card text-card-foreground shadow-sm relative overflow-hidden">
+          <div className="bg-card text-card-foreground relative overflow-hidden rounded-lg border shadow-sm">
             <div className="flex flex-col space-y-1.5 p-6 pb-3">
               <div className="flex items-center space-x-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <UsersIcon className="text-blue-500 h-5 w-5" />
+                <div className="bg-primary/10 rounded-lg p-2">
+                  <UsersIcon className="h-5 w-5 text-blue-500" />
                 </div>
-                <h3 className="font-semibold tracking-tight text-lg">
+                <h3 className="text-lg font-semibold tracking-tight">
                   Secondary Goal
                 </h3>
               </div>
@@ -90,13 +90,13 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
               </p>
             </div>
           </div>
-          <div className="rounded-lg border bg-card text-card-foreground shadow-sm relative overflow-hidden">
+          <div className="bg-card text-card-foreground relative overflow-hidden rounded-lg border shadow-sm">
             <div className="flex flex-col space-y-1.5 p-6 pb-3">
               <div className="flex items-center space-x-3">
-                <div className="p-2 rounded-lg bg-primary/10">
-                  <ZapIcon className="text-purple-500 h-5 w-5" />
+                <div className="bg-primary/10 rounded-lg p-2">
+                  <ZapIcon className="h-5 w-5 text-purple-500" />
                 </div>
-                <h3 className="font-semibold tracking-tight text-lg">
+                <h3 className="text-lg font-semibold tracking-tight">
                   Future Vision
                 </h3>
               </div>
@@ -110,15 +110,15 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
         </div>
       </PageContentSection>
       <PageContentSection title="Technology Stack">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {projectData.stacks?.map((stack) => (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {projectData.stacks?.map(stack => (
             <div
               key={stack.title}
-              className="rounded-lg border bg-card text-card-foreground shadow-sm p-4 hover:shadow-md transition-shadow"
+              className="bg-card text-card-foreground rounded-lg border p-4 shadow-sm transition-shadow hover:shadow-md"
             >
               <div className="space-y-2">
                 <h4 className="font-medium">{stack.title}</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   {stack.description}
                 </p>
               </div>
@@ -127,7 +127,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
         </div>
       </PageContentSection>
       <PageContentSection title="Explore Further">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <ExploreArchitecture id={id} />
           <ExploreUserstories id={id} />
         </div>

@@ -4,45 +4,45 @@ import {
   LinkedinIcon,
   TwitterIcon,
   XIcon,
-} from "lucide-react";
-import Link from "next/link";
-import React from "react";
+} from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
 
 const Footer = () => {
   return (
-    <div className="border border-t w-full">
+    <div className="w-full border border-t">
       <div className="container mx-auto max-w-7xl py-6">
         <div className="flex justify-between">
           <div className="space-y-1.5">
-            <h4 className="font-semibold text-xl">Story</h4>
-            <p className="text-sm text-muted-foreground">
+            <h4 className="text-xl font-semibold">Story</h4>
+            <p className="text-muted-foreground text-sm">
               Interactive Project Narratives.
             </p>
-            <p className="text-xs mt-4 text-muted-foreground">
+            <p className="text-muted-foreground mt-4 text-xs">
               © 2025 Story. Built with Next.js and Tailwind CSS.
             </p>
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex items-center gap-3">
             <Link
               className="text-muted-foreground"
-              href={"https://github.com/vishnumohanan404/storyvault"}
+              href={'https://github.com/vishnumohanan404/storyvault'}
               target="_blank"
             >
-              <GithubIcon className="w-5 h-5" />
+              <GithubIcon className="h-5 w-5" />
             </Link>
             <Link
               className="text-muted-foreground"
-              href={"https://vishnuvw.xyz/"}
+              href={'https://vishnuvw.xyz/'}
               target="_blank"
             >
-              <Globe2Icon className="w-5 h-5" />
+              <Globe2Icon className="h-5 w-5" />
             </Link>
             <Link
               className="text-muted-foreground"
-              href={"https://www.linkedin.com/in/404vishnu/"}
+              href={'https://www.linkedin.com/in/404vishnu/'}
               target="_blank"
             >
-              <LinkedinIcon className="w-5 h-5" />
+              <LinkedinIcon className="h-5 w-5" />
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
 // YouTube IFrame API types
 declare global {
@@ -28,8 +28,8 @@ interface YouTubePlayer {
 
 const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   videoUrl,
-  width = "100%",
-  height = "315",
+  width = '100%',
+  height = '315',
   autoplay = false,
   controls = true,
   mute = false,
@@ -52,10 +52,10 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   useEffect(() => {
     const loadYouTubeAPI = () => {
       if (!window.YT) {
-        const tag = document.createElement("script");
-        tag.src = "https://www.youtube.com/iframe_api";
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
         tag.async = true;
-        const firstScriptTag = document.getElementsByTagName("script")[0];
+        const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
       }
 
@@ -83,7 +83,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
     return () => {
       if (
         playerRef.current &&
-        typeof playerRef.current.destroy === "function"
+        typeof playerRef.current.destroy === 'function'
       ) {
         playerRef.current.destroy();
       }
@@ -115,7 +115,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
     if (!videoId || isLoading) return;
 
     try {
-      playerRef.current = new window.YT.Player("youtube-player", {
+      playerRef.current = new window.YT.Player('youtube-player', {
         height: height,
         width: width,
         videoId: videoId,
@@ -131,12 +131,12 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
             setPlayerReady(true);
           },
           onError: (event: any) => {
-            console.error("YouTube Player Error:", event.data);
+            console.error('YouTube Player Error:', event.data);
           },
         },
       });
     } catch (error) {
-      console.error("Failed to initialize YouTube player:", error);
+      console.error('Failed to initialize YouTube player:', error);
     }
   };
 
@@ -144,10 +144,10 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
     return (
       <div
         style={{
-          width: typeof width === "number" ? `${width}px` : width,
-          height: typeof height === "number" ? `${height}px` : height,
+          width: typeof width === 'number' ? `${width}px` : width,
+          height: typeof height === 'number' ? `${height}px` : height,
         }}
-        className="flex items-center justify-center bg-gray-200 text-gray-500 border border-gray-300 rounded"
+        className="flex items-center justify-center rounded border border-gray-300 bg-gray-200 text-gray-500"
       >
         Invalid YouTube URL
       </div>
@@ -158,10 +158,10 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
     return (
       <div
         style={{
-          width: typeof width === "number" ? `${width}px` : width,
-          height: typeof height === "number" ? `${height}px` : height,
+          width: typeof width === 'number' ? `${width}px` : width,
+          height: typeof height === 'number' ? `${height}px` : height,
         }}
-        className="flex items-center justify-center bg-gray-100 text-gray-500 border border-gray-300 rounded"
+        className="flex items-center justify-center rounded border border-gray-300 bg-gray-100 text-gray-500"
       >
         Loading YouTube Player...
       </div>
@@ -172,8 +172,8 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
     <div
       id="youtube-player"
       style={{
-        width: typeof width === "number" ? `${width}px` : width,
-        height: typeof height === "number" ? `${height}px` : height,
+        width: typeof width === 'number' ? `${width}px` : width,
+        height: typeof height === 'number' ? `${height}px` : height,
       }}
     />
   );

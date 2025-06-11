@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const Loading = () => {
   return (
-    <div className="w-full min-h-[70vh] flex justify-center items-center">
+    <div className="flex min-h-[70vh] w-full items-center justify-center">
       <svg
         aria-hidden="true"
-        className="inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+        className="inline h-6 w-6 animate-spin fill-gray-600 text-gray-200 dark:fill-gray-300 dark:text-gray-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
