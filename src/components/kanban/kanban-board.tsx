@@ -13,6 +13,7 @@ import {
 import { arrayMove, SortableContext } from "@dnd-kit/sortable";
 import { KanbanColumn } from "./kanban-column";
 import { KanbanCard } from "./kanban-card";
+import { StoryDrawer } from "./story-drawer";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -25,9 +26,171 @@ import { Badge } from "@/components/ui/badge";
 import { Download, Github, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
 
-// Initial board data
-const initialBoardData = {
-  project: "gitops-aws-pipeline",
+interface KanbanBoardProps {
+  projectId?: string;
+}
+
+// Project-specific board data
+const projectBoardData = {
+  "gitops-aws-pipeline": {
+    project: "gitops-aws-pipeline",
+    columns: [
+      { id: "backlog", title: "Backlog", color: "gray" },
+      { id: "ready", title: "Ready", color: "blue" },
+      { id: "in-progress", title: "In Progress", color: "yellow" },
+      { id: "in-review", title: "In Review", color: "purple" },
+      { id: "done", title: "Done", color: "green" },
+    ],
+    stories: [
+      {
+        id: "us1",
+        title: "Set Up Git Repository",
+        status: "Complete",
+        estimate: "1 day",
+        labels: ["M"],
+        column: "done",
+        description:
+          "Set up GitLab repository with proper structure for GitOps workflow including branches, protection rules, and initial documentation.",
+      },
+      {
+        id: "us2",
+        title: "Infrastructure as Code Setup",
+        status: "Complete",
+        estimate: "3 days",
+        labels: ["L"],
+        column: "done",
+        description:
+          "Create Terraform configurations for AWS infrastructure including VPC, EKS cluster, and supporting services.",
+      },
+      {
+        id: "us3",
+        title: "CI/CD Pipeline Configuration",
+        status: "Complete",
+        estimate: "2 days",
+        labels: ["M"],
+        column: "done",
+        description:
+          "Configure GitLab CI/CD pipeline for automated testing, building, and deployment of applications.",
+      },
+      {
+        id: "us4",
+        title: "ArgoCD Installation & Setup",
+        status: "Complete",
+        estimate: "2 days",
+        labels: ["M"],
+        column: "done",
+        description:
+          "Install and configure ArgoCD for GitOps continuous deployment with proper RBAC and security settings.",
+      },
+      {
+        id: "us5",
+        title: "Application Deployment",
+        status: "Complete",
+        estimate: "1 day",
+        labels: ["S"],
+        column: "done",
+        description:
+          "Deploy sample application using GitOps principles with ArgoCD managing the deployment lifecycle.",
+      },
+      {
+        id: "us6",
+        title: "Monitoring & Observability",
+        status: "Complete",
+        estimate: "3 days",
+        labels: ["L"],
+        column: "done",
+        description:
+          "Implement comprehensive monitoring with Prometheus, Grafana, and logging solutions for full observability.",
+      },
+      {
+        id: "us7",
+        title: "Security Implementation",
+        status: "Complete",
+        estimate: "2 days",
+        labels: ["M"],
+        column: "done",
+        description:
+          "Implement security best practices including RBAC, network policies, and vulnerability scanning.",
+      },
+      {
+        id: "us8",
+        title: "Documentation & Testing",
+        status: "Complete",
+        estimate: "2 days",
+        labels: ["M"],
+        column: "done",
+        description:
+          "Create comprehensive documentation and implement automated testing for the entire GitOps pipeline.",
+      },
+    ],
+  },
+  "microservices-k8s": {
+    project: "microservices-k8s",
+    columns: [
+      { id: "backlog", title: "Backlog", color: "gray" },
+      { id: "ready", title: "Ready", color: "blue" },
+      { id: "in-progress", title: "In Progress", color: "yellow" },
+      { id: "in-review", title: "In Review", color: "purple" },
+      { id: "done", title: "Done", color: "green" },
+    ],
+    stories: [
+      {
+        id: "us1",
+        title: "Microservices Architecture Design",
+        status: "Complete",
+        estimate: "2 days",
+        labels: ["L"],
+        column: "done",
+        description:
+          "Design the overall microservices architecture with service boundaries and communication patterns.",
+      },
+      {
+        id: "us2",
+        title: "Service Mesh Implementation",
+        status: "In Progress",
+        estimate: "3 days",
+        labels: ["L"],
+        column: "in-progress",
+        description:
+          "Implement Istio service mesh for traffic management, security, and observability.",
+      },
+      {
+        id: "us3",
+        title: "API Gateway Setup",
+        status: "Ready",
+        estimate: "2 days",
+        labels: ["M"],
+        column: "ready",
+        description:
+          "Configure API gateway for external traffic routing and rate limiting.",
+      },
+      {
+        id: "us4",
+        title: "Service Discovery",
+        status: "Ready",
+        estimate: "1 day",
+        labels: ["S"],
+        column: "ready",
+        description:
+          "Implement service discovery mechanism for dynamic service registration.",
+      },
+      {
+        id: "us5",
+        title: "Distributed Tracing",
+        status: "Draft",
+        estimate: "2 days",
+        labels: ["M"],
+        column: "backlog",
+        description:
+          "Set up distributed tracing with Jaeger for request flow visibility.",
+      },
+    ],
+  },
+};
+
+// Default board data for unknown projects
+const defaultBoardData = {
+  project: "default",
   columns: [
     { id: "backlog", title: "Backlog", color: "gray" },
     { id: "ready", title: "Ready", color: "blue" },
@@ -38,91 +201,26 @@ const initialBoardData = {
   stories: [
     {
       id: "us1",
-      title: "Set Up Git Repository",
+      title: "Sample User Story",
       status: "Draft",
       estimate: "1 day",
       labels: ["M"],
       column: "backlog",
       description:
-        "Set up GitLab repository with proper structure for GitOps workflow including branches, protection rules, and initial documentation.",
-    },
-    {
-      id: "us2",
-      title: "Infrastructure as Code Setup",
-      status: "Draft",
-      estimate: "3 days",
-      labels: ["L"],
-      column: "backlog",
-      description:
-        "Create Terraform configurations for AWS infrastructure including VPC, EKS cluster, and supporting services.",
-    },
-    {
-      id: "us3",
-      title: "CI/CD Pipeline Configuration",
-      status: "Draft",
-      estimate: "2 days",
-      labels: ["M"],
-      column: "backlog",
-      description:
-        "Configure GitLab CI/CD pipeline for automated testing, building, and deployment of applications.",
-    },
-    {
-      id: "us4",
-      title: "ArgoCD Installation & Setup",
-      status: "Draft",
-      estimate: "2 days",
-      labels: ["M"],
-      column: "backlog",
-      description:
-        "Install and configure ArgoCD for GitOps continuous deployment with proper RBAC and security settings.",
-    },
-    {
-      id: "us5",
-      title: "Application Deployment",
-      status: "Draft",
-      estimate: "1 day",
-      labels: ["S"],
-      column: "backlog",
-      description:
-        "Deploy sample application using GitOps principles with ArgoCD managing the deployment lifecycle.",
-    },
-    {
-      id: "us6",
-      title: "Monitoring & Observability",
-      status: "Draft",
-      estimate: "3 days",
-      labels: ["L"],
-      column: "backlog",
-      description:
-        "Implement comprehensive monitoring with Prometheus, Grafana, and logging solutions for full observability.",
-    },
-    {
-      id: "us7",
-      title: "Security Implementation",
-      status: "Draft",
-      estimate: "2 days",
-      labels: ["M"],
-      column: "backlog",
-      description:
-        "Implement security best practices including RBAC, network policies, and vulnerability scanning.",
-    },
-    {
-      id: "us8",
-      title: "Documentation & Testing",
-      status: "Draft",
-      estimate: "2 days",
-      labels: ["M"],
-      column: "backlog",
-      description:
-        "Create comprehensive documentation and implement automated testing for the entire GitOps pipeline.",
+        "This is a sample user story to demonstrate the Kanban board functionality.",
     },
   ],
 };
 
-export function KanbanBoard() {
-  const [boardData, setBoardData] = useState(initialBoardData);
+export function KanbanBoard({ projectId = "default" }: KanbanBoardProps) {
+  const initialData =
+    projectBoardData[projectId as keyof typeof projectBoardData] ||
+    defaultBoardData;
+  const [boardData, setBoardData] = useState(initialData);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [selectedStory, setSelectedStory] = useState<any>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -135,7 +233,7 @@ export function KanbanBoard() {
   // Load board state from localStorage on mount
   useEffect(() => {
     setMounted(true);
-    const savedBoard = localStorage.getItem("kanban-board-state");
+    const savedBoard = localStorage.getItem(`kanban-board-state-${projectId}`);
     if (savedBoard) {
       try {
         setBoardData(JSON.parse(savedBoard));
@@ -143,14 +241,17 @@ export function KanbanBoard() {
         console.error("Failed to load board state:", error);
       }
     }
-  }, []);
+  }, [projectId]);
 
   // Save board state to localStorage whenever it changes
   useEffect(() => {
     if (mounted) {
-      localStorage.setItem("kanban-board-state", JSON.stringify(boardData));
+      localStorage.setItem(
+        `kanban-board-state-${projectId}`,
+        JSON.stringify(boardData)
+      );
     }
-  }, [boardData, mounted]);
+  }, [boardData, mounted, projectId]);
 
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id as string);
@@ -194,15 +295,29 @@ export function KanbanBoard() {
     }));
 
     toast.success(
-      `Moved "${activeStory.title}" to ${
-        boardData.columns.find((col) => col.id === targetColumn)?.title
-      }`
+      `Moved "${activeStory.title}" to ${boardData.columns.find((col) => col.id === targetColumn)?.title}`
     );
   };
 
+  const handleStoryClick = (story: any) => {
+    setSelectedStory(story);
+    setIsDrawerOpen(true);
+  };
+
+  const handleStoryUpdate = (updatedStory: any) => {
+    setBoardData((prev) => ({
+      ...prev,
+      stories: prev.stories.map((story) =>
+        story.id === updatedStory.id ? updatedStory : story
+      ),
+    }));
+    setSelectedStory(updatedStory);
+    toast.success(`Updated "${updatedStory.title}"`);
+  };
+
   const resetBoard = () => {
-    setBoardData(initialBoardData);
-    localStorage.removeItem("kanban-board-state");
+    setBoardData(initialData);
+    localStorage.removeItem(`kanban-board-state-${projectId}`);
     toast.success("Board reset to initial state");
   };
 
@@ -212,9 +327,7 @@ export function KanbanBoard() {
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `kanban-board-${
-      new Date().toISOString().split("T")[0]
-    }.json`;
+    link.download = `kanban-board-${projectId}-${new Date().toISOString().split("T")[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
     toast.success("Board exported as JSON file");
@@ -261,7 +374,8 @@ export function KanbanBoard() {
             <div>
               <CardTitle className="text-lg">Board Controls</CardTitle>
               <CardDescription>
-                Manage your board state and export options
+                Manage your board state and export options. Click on any story
+                card to view details.
               </CardDescription>
             </div>
             <div className="flex items-center space-x-2">
@@ -314,6 +428,7 @@ export function KanbanBoard() {
               stories={boardData.stories.filter(
                 (story) => story.column === column.id
               )}
+              onStoryClick={handleStoryClick}
             />
           ))}
         </div>
@@ -322,6 +437,14 @@ export function KanbanBoard() {
           {activeStory ? <KanbanCard story={activeStory} /> : null}
         </DragOverlay>
       </DndContext>
+
+      {/* Story Detail Drawer */}
+      <StoryDrawer
+        story={selectedStory}
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        onUpdate={handleStoryUpdate}
+      />
     </div>
   );
 }

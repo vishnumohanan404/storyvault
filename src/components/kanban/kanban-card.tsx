@@ -23,6 +23,7 @@ interface Story {
 
 interface KanbanCardProps {
   story: Story;
+  onClick?: () => void;
 }
 
 const labelColors = {
@@ -31,7 +32,7 @@ const labelColors = {
   L: "bg-red-500/10 text-red-700 dark:text-red-400",
 };
 
-export function KanbanCard({ story }: KanbanCardProps) {
+export function KanbanCard({ story, onClick }: KanbanCardProps) {
   const {
     attributes,
     listeners,
@@ -46,6 +47,17 @@ export function KanbanCard({ story }: KanbanCardProps) {
     transition,
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    // Only trigger onClick if not dragging and not clicking on drag handle
+    if (
+      !isDragging &&
+      onClick &&
+      !(e.target as HTMLElement).closest("[data-drag-handle]")
+    ) {
+      onClick();
+    }
+  };
+
   return (
     <Card
       ref={setNodeRef}
@@ -56,6 +68,7 @@ export function KanbanCard({ story }: KanbanCardProps) {
       )}
       {...attributes}
       {...listeners}
+      onClick={handleClick}
     >
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between">
