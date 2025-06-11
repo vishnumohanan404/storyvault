@@ -55,7 +55,7 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         tag.async = true;
-        const firstScriptTag = document.getElementsByTagName('script')[0];
+        const firstScriptTag = document.querySelectorAll('script')[0];
         firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
       }
 
@@ -98,15 +98,13 @@ const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
 
   // Initialize or update player when video ID changes
   useEffect(() => {
-    if (videoId && !isLoading) {
-      if (window.YT && window.YT.Player) {
-        if (playerReady && playerRef.current) {
-          // Update existing player
-          playerRef.current.loadVideoById(videoId);
-        } else {
-          // Initialize new player
-          initializePlayer();
-        }
+    if (videoId && !isLoading && window.YT && window.YT.Player) {
+      if (playerReady && playerRef.current) {
+        // Update existing player
+        playerRef.current.loadVideoById(videoId);
+      } else {
+        // Initialize new player
+        initializePlayer();
       }
     }
   }, [videoId, isLoading]);

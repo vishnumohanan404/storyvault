@@ -1,8 +1,10 @@
 'use client';
 
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+
 import PageContentSection from '@/components/layout/page-content-section';
 import PageHeaderSection from '@/components/layout/page-header-section';
-import { Separator } from '@/components/ui/separator';
 import {
   Pagination,
   PaginationContent,
@@ -12,10 +14,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import React, { useState, useEffect } from 'react';
-import { BlogPost } from '../types';
-import Image from 'next/image';
+import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
+
+import { BlogPost } from '../types';
 
 const ResourcePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -108,30 +110,26 @@ const ResourcePage = () => {
     const maxVisiblePages = 5;
 
     if (totalPages <= maxVisiblePages) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
+      for (let index = 1; index <= totalPages; index++) {
+        pages.push(index);
       }
     } else {
       if (currentPage <= 3) {
-        for (let i = 1; i <= 4; i++) {
-          pages.push(i);
+        for (let index = 1; index <= 4; index++) {
+          pages.push(index);
         }
-        pages.push('ellipsis');
-        pages.push(totalPages);
+        pages.push('ellipsis', totalPages);
       } else if (currentPage >= totalPages - 2) {
-        pages.push(1);
-        pages.push('ellipsis');
-        for (let i = totalPages - 3; i <= totalPages; i++) {
-          pages.push(i);
+        pages.push(1, 'ellipsis');
+        for (let index = totalPages - 3; index <= totalPages; index++) {
+          pages.push(index);
         }
       } else {
-        pages.push(1);
-        pages.push('ellipsis');
-        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-          pages.push(i);
+        pages.push(1, 'ellipsis');
+        for (let index = currentPage - 1; index <= currentPage + 1; index++) {
+          pages.push(index);
         }
-        pages.push('ellipsis');
-        pages.push(totalPages);
+        pages.push('ellipsis', totalPages);
       }
     }
 
@@ -143,7 +141,7 @@ const ResourcePage = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // Smooth scroll to top of the posts section
-    const postsSection = document.getElementById('posts-section');
+    const postsSection = document.querySelector('#posts-section');
     if (postsSection) {
       postsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -165,7 +163,7 @@ const ResourcePage = () => {
                 key={index}
                 className="bg-card animate-pulse overflow-hidden rounded-lg border shadow-sm"
               >
-                <Skeleton className="h-40 w-full rounded-t-2xl rounded-b-none" />
+                <Skeleton className="h-40 w-full rounded-b-none rounded-t-2xl" />
                 <div className="flex flex-col space-y-1.5 p-6">
                   <Skeleton className="line-clamp-2 h-5 w-[250px] text-lg font-semibold tracking-tight" />
                   <Skeleton className="mb-4 line-clamp-2 h-5 w-[200px] text-lg font-semibold tracking-tight" />
@@ -263,17 +261,19 @@ const ResourcePage = () => {
                     )}
 
                     {/* Page numbers */}
-                    {pageNumbers.map((pageNum, index) => (
+                    {pageNumbers.map((pageNumber, index) => (
                       <PaginationItem key={index}>
-                        {pageNum === 'ellipsis' ? (
+                        {pageNumber === 'ellipsis' ? (
                           <PaginationEllipsis />
                         ) : (
                           <PaginationLink
-                            onClick={() => handlePageChange(pageNum as number)}
-                            isActive={currentPage === pageNum}
+                            onClick={() =>
+                              handlePageChange(pageNumber as number)
+                            }
+                            isActive={currentPage === pageNumber}
                             className="cursor-pointer"
                           >
-                            {pageNum}
+                            {pageNumber}
                           </PaginationLink>
                         )}
                       </PaginationItem>

@@ -1,12 +1,14 @@
+import { TargetIcon, UsersIcon, ZapIcon } from 'lucide-react';
+import React from 'react';
+
 import ExploreArchitecture from '@/components/common/explore-cards/architecture';
 import ExploreUserstories from '@/components/common/explore-cards/userstories';
 import PageContentSection from '@/components/layout/page-content-section';
 import PageHeaderSection from '@/components/layout/page-header-section';
-import { client } from '@/sanity/client';
-import { TargetIcon, UsersIcon, ZapIcon } from 'lucide-react';
-import React from 'react';
-import { Project, ProjectPageProps } from './types';
 import { Separator } from '@/components/ui/separator';
+import { client } from '@/sanity/client';
+
+import { Project, ProjectPageProps } from './types';
 
 const PROJECT_OVERVIEW_QUERY = `
   *[_type == "overview" && project._ref == $projectId][0]{

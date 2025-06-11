@@ -1,6 +1,7 @@
-import PageHeaderSection from '@/components/layout/page-header-section';
 import React from 'react';
+
 import { KanbanBoard } from '@/components/kanban/kanban-board';
+import PageHeaderSection from '@/components/layout/page-header-section';
 
 const KanbanPage = () => {
   return (

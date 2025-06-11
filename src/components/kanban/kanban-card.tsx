@@ -1,5 +1,8 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { Clock, GripVertical } from 'lucide-react';
+
+import { Badge } from '@/components/ui/badge';
 import {
   Card,
   CardContent,
@@ -7,8 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { GripVertical, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Story {
@@ -72,7 +73,7 @@ export function KanbanCard({ story, onClick }: KanbanCardProps) {
     >
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between">
-          <CardTitle className="text-sm leading-tight font-medium">
+          <CardTitle className="text-sm font-medium leading-tight">
             {story.title}
           </CardTitle>
           <GripVertical className="text-muted-foreground ml-2 h-4 w-4 flex-shrink-0" />

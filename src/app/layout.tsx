@@ -1,8 +1,10 @@
-import type { Metadata } from 'next';
-import { Manrope, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/layout/navbar';
+
+import type { Metadata } from 'next';
+import { Geist_Mono, Manrope } from 'next/font/google';
+
 import Footer from '@/components/layout/footer';
+import Navbar from '@/components/layout/navbar';
 
 const manropeSans = Manrope({
   variable: '--font-manrope',

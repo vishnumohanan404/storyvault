@@ -1,16 +1,21 @@
 'use client';
 
-import { useState } from 'react';
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui/sheet';
+  Calendar,
+  CheckCircle,
+  Clock,
+  Edit,
+  FileText,
+  Flag,
+  Tag,
+  Target,
+  User,
+  X,
+} from 'lucide-react';
+import { useState } from 'react';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import {
   Card,
   CardContent,
@@ -18,18 +23,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import {
-  Clock,
-  Target,
-  CheckCircle,
-  User,
-  Calendar,
-  Flag,
-  Tag,
-  FileText,
-  Edit,
-  X,
-} from 'lucide-react';
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
 interface Story {

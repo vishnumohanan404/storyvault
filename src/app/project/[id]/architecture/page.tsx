@@ -1,11 +1,12 @@
-import { client } from '@/sanity/client';
-import { SystemArchitecture, ProjectPageProps } from '../types';
-import PageHeaderSection from '@/components/layout/page-header-section';
-import PageContentSection from '@/components/layout/page-content-section';
-import ExploreUserstories from '@/components/common/explore-cards/userstories';
 import ExploreImplementation from '@/components/common/explore-cards/implementation';
-import { Skeleton } from '@/components/ui/skeleton';
+import ExploreUserstories from '@/components/common/explore-cards/userstories';
+import PageContentSection from '@/components/layout/page-content-section';
+import PageHeaderSection from '@/components/layout/page-header-section';
 import { Separator } from '@/components/ui/separator';
+import { Skeleton } from '@/components/ui/skeleton';
+import { client } from '@/sanity/client';
+
+import { ProjectPageProps, SystemArchitecture } from '../types';
 
 const PROJECT_SYSTEM_ARCHITECTURE = `*[_type == "systemArchitecture" && project._ref == $projectId][0] {
   _id,

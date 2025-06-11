@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import {
   DndContext,
   DragEndEvent,
@@ -11,9 +10,11 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import { arrayMove, SortableContext } from '@dnd-kit/sortable';
-import { KanbanColumn } from './kanban-column';
-import { KanbanCard } from './kanban-card';
-import { StoryDrawer } from './story-drawer';
+import { Download, Github, RotateCcw } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -22,9 +23,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Download, Github, RotateCcw } from 'lucide-react';
-import { toast } from 'sonner';
+
+import { KanbanCard } from './kanban-card';
+import { KanbanColumn } from './kanban-column';
+import { StoryDrawer } from './story-drawer';
 
 interface KanbanBoardProps {
   projectId?: string;
@@ -283,15 +285,17 @@ export function KanbanBoard({ projectId = 'default' }: KanbanBoardProps) {
     }
 
     // Update the story's column
-    setBoardData(prev => ({
-      ...prev,
-      stories: prev.stories.map(story =>
+    setBoardData(previous => ({
+      ...previous,
+      stories: previous.stories.map(story =>
         story.id === activeId ? { ...story, column: targetColumn } : story,
       ),
     }));
 
     toast.success(
-      `Moved "${activeStory.title}" to ${boardData.columns.find(col => col.id === targetColumn)?.title}`,
+      `Moved "${activeStory.title}" to ${
+        boardData.columns.find(col => col.id === targetColumn)?.title
+      }`,
     );
   };
 
@@ -301,9 +305,9 @@ export function KanbanBoard({ projectId = 'default' }: KanbanBoardProps) {
   };
 
   const handleStoryUpdate = (updatedStory: any) => {
-    setBoardData(prev => ({
-      ...prev,
-      stories: prev.stories.map(story =>
+    setBoardData(previous => ({
+      ...previous,
+      stories: previous.stories.map(story =>
         story.id === updatedStory.id ? updatedStory : story,
       ),
     }));
@@ -318,12 +322,14 @@ export function KanbanBoard({ projectId = 'default' }: KanbanBoardProps) {
   };
 
   const downloadBoard = () => {
-    const dataStr = JSON.stringify(boardData, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const dataString = JSON.stringify(boardData, null, 2);
+    const dataBlob = new Blob([dataString], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `kanban-board-${projectId}-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `kanban-board-${projectId}-${
+      new Date().toISOString().split('T')[0]
+    }.json`;
     link.click();
     URL.revokeObjectURL(url);
     toast.success('Board exported as JSON file');
@@ -341,13 +347,13 @@ export function KanbanBoard({ projectId = 'default' }: KanbanBoardProps) {
       <div className="space-y-6">
         <div className="bg-muted h-8 animate-pulse rounded" />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-5">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="space-y-4">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <div key={index} className="space-y-4">
               <div className="bg-muted h-12 animate-pulse rounded" />
               <div className="space-y-3">
-                {Array.from({ length: 2 }).map((_, j) => (
+                {Array.from({ length: 2 }).map((_, index) => (
                   <div
-                    key={j}
+                    key={index}
                     className="bg-muted h-24 animate-pulse rounded"
                   />
                 ))}

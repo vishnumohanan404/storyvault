@@ -1,9 +1,10 @@
 'use client';
-import { cn } from '@/lib/utils';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
+
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn } from '@/lib/utils';
 
 const sidebarMenu = [
   {
@@ -47,7 +48,7 @@ const CommonSidebarLayout = ({
             <div className="space-y-6">
               {sidebarMenu.map(menuItems => (
                 <div className="space-y-3" key={menuItems.title}>
-                  <h4 className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
+                  <h4 className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
                     {menuItems.title}
                   </h4>
                   <div className="space-y-1">

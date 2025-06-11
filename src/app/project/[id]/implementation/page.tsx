@@ -1,6 +1,3 @@
-import ExploreLessons from '@/components/common/explore-cards/lessons';
-import PageContentSection from '@/components/layout/page-content-section';
-import PageHeaderSection from '@/components/layout/page-header-section';
 import {
   BookOpenIcon,
   CircleCheckBig,
@@ -9,10 +6,15 @@ import {
   TerminalIcon,
 } from 'lucide-react';
 import React from 'react';
-import { ProjectPageProps } from '../types';
+
 import ExploreKanban from '@/components/common/explore-cards/kanban';
-import { Separator } from '@/components/ui/separator';
+import ExploreLessons from '@/components/common/explore-cards/lessons';
+import PageContentSection from '@/components/layout/page-content-section';
+import PageHeaderSection from '@/components/layout/page-header-section';
 import YouTubePlayer from '@/components/layout/videoplayer';
+import { Separator } from '@/components/ui/separator';
+
+import { ProjectPageProps } from '../types';
 
 const ImplementationPage = async ({ params }: ProjectPageProps) => {
   const { id } = await params;
@@ -102,7 +104,7 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                           <a
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center rounded-md border px-3 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                             href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"
                           >
                             AWS IAM Best Practices
@@ -111,7 +113,7 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                           <a
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center rounded-md border px-3 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                             href="https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html"
                           >
                             EKS Service Role
@@ -160,8 +162,8 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                           </div>
                           <div className="bg-muted rounded-lg p-3 font-mono text-sm">
                             <code>
-                              git add . &amp;&amp; git commit -m "Initial
-                              project structure"
+                              git add . &amp;&amp; git commit -m &quot;Initial
+                              project structure&quot;
                             </code>
                           </div>
                         </div>
@@ -175,7 +177,7 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                           <a
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center rounded-md border px-3 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                             href="https://docs.gitlab.com/ee/ci/"
                           >
                             GitLab CI/CD
@@ -184,7 +186,7 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                           <a
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center rounded-md border px-3 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                             href="https://www.gitops.tech/"
                           >
                             GitOps Workflow
@@ -248,7 +250,7 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                           <a
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center rounded-md border px-3 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                             href="https://kubernetes.io/docs/tasks/tools/"
                           >
                             kubectl Installation
@@ -257,7 +259,7 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                           <a
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center rounded-md border px-3 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                            className="ring-offset-background focus-visible:ring-ring border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md border px-3 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                             href="https://eksctl.io/installation/"
                           >
                             eksctl Installation
@@ -293,16 +295,16 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
             </div>
             <div className="space-y-4 p-6 pt-0">
               <div className="flex flex-wrap gap-2">
-                <div className="focus:ring-ring bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none">
+                <div className="focus:ring-ring bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2">
                   Node.js
                 </div>
-                <div className="focus:ring-ring bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none">
+                <div className="focus:ring-ring bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2">
                   Express
                 </div>
-                <div className="focus:ring-ring bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none">
+                <div className="focus:ring-ring bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2">
                   Docker
                 </div>
-                <div className="focus:ring-ring bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none">
+                <div className="focus:ring-ring bg-secondary text-secondary-foreground hover:bg-secondary/80 inline-flex items-center rounded-full border border-transparent px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2">
                   Kubernetes
                 </div>
               </div>
@@ -330,7 +332,7 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ring-offset-background focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 w-full items-center justify-center rounded-md px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+                className="ring-offset-background focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                 href="https://github.com/example/nodejs-microservice-template"
               >
                 <Download className="mr-2 h-4 w-4" />

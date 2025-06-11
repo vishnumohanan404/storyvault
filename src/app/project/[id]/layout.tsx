@@ -1,10 +1,12 @@
 'use client';
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
-import { SidebarMenu } from './types';
+
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn } from '@/lib/utils';
+
+import { SidebarMenu } from './types';
 
 const sidebarMenu: SidebarMenu = [
   {
@@ -78,14 +80,16 @@ const ProjectSidebarLayout = ({
             <div className="space-y-6">
               {sidebarMenu.map(menuItems => (
                 <div className="space-y-3" key={menuItems.title}>
-                  <h4 className="text-muted-foreground text-sm font-medium tracking-wider uppercase">
+                  <h4 className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
                     {menuItems.title}
                   </h4>
                   <div className="space-y-1">
                     {menuItems.menu.map(item => {
                       const linkHref = item.href
                         ? `/${item.href}/${projectId}` // use href directly
-                        : `/project/${projectId}${item.path ? `/${item.path}` : ''}`; // fallback to path logic
+                        : `/project/${projectId}${
+                            item.path ? `/${item.path}` : ''
+                          }`; // fallback to path logic
 
                       const isActive = pathname === linkHref;
 

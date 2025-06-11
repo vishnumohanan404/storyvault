@@ -1,3 +1,7 @@
+import { ExternalLinkIcon, StarIcon } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,9 +14,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { client } from '@/sanity/client';
-import { ExternalLinkIcon, StarIcon } from 'lucide-react';
-import Link from 'next/link';
-import React from 'react';
+
 import { Project } from '../types';
 
 const PROJECTS_QUERY = `*[_type == "projects"]{ 

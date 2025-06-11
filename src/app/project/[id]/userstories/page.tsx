@@ -1,12 +1,14 @@
+import { Clock, Target } from 'lucide-react';
+import React from 'react';
+
 import ExploreImplementation from '@/components/common/explore-cards/implementation';
 import PageContentSection from '@/components/layout/page-content-section';
 import PageHeaderSection from '@/components/layout/page-header-section';
+import { Separator } from '@/components/ui/separator';
 import { getPriorityStyle, getSizeStyle, getStatusStyle } from '@/lib/utils';
 import { client } from '@/sanity/client';
-import { Clock, Target } from 'lucide-react';
-import React from 'react';
+
 import { UserStory } from '../types';
-import { Separator } from '@/components/ui/separator';
 
 const PROJECT_USERSTORIES_QUERY = `
     *[_type == "userstories" && project._ref == $projectId][0].userstory[]{
@@ -54,12 +56,12 @@ const UserStories = async ({ params }: { params: { id: string } }) => {
                     <div className="flex-1 space-y-3">
                       <div className="flex flex-wrap items-center gap-2 space-x-3">
                         <div
-                          className={`focus:ring-ring inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none ${statusStyle}`}
+                          className={`focus:ring-ring inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${statusStyle}`}
                         >
                           {userstory.status}
                         </div>
                         <div
-                          className={`focus:ring-ring hover:bg-primary/80 inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none ${sizeStyle}`}
+                          className={`focus:ring-ring hover:bg-primary/80 inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${sizeStyle}`}
                         >
                           {userstory.size.charAt(0).toUpperCase()}
                         </div>
@@ -67,7 +69,7 @@ const UserStories = async ({ params }: { params: { id: string } }) => {
                           <Clock className="h-3 w-3" />
                           <span>
                             {userstory.estimate} day
-                            {userstory.estimate !== 1 ? 's' : ''}
+                            {userstory.estimate === 1 ? '' : 's'}
                           </span>
                         </div>
 

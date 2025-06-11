@@ -1,6 +1,4 @@
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { client } from '@/sanity/client';
+import { Separator } from '@radix-ui/react-separator';
 import {
   ArrowRight,
   BookOpen,
@@ -11,7 +9,9 @@ import {
   Zap,
 } from 'lucide-react';
 import Link from 'next/link';
-import { Project } from './(commonsidebar)/types';
+
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardAction,
@@ -21,7 +21,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Separator } from '@radix-ui/react-separator';
+import { client } from '@/sanity/client';
+
+import { Project } from './(commonsidebar)/types';
 
 const PROJECTS_QUERY = `*[_type == "projects" && featured == true][0...3]{ 
   _id, 
@@ -38,7 +40,7 @@ export default async function Home() {
   const projects = await client.fetch<Project[]>(PROJECTS_QUERY, {}, options);
   return (
     <main className="mx-auto min-h-screen">
-      <section className="relative overflow-hidden py-20 lg:py-42">
+      <section className="lg:py-42 relative overflow-hidden py-20">
         {/* bg animation */}
         {/* <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/30"></div>
         <div className="absolute inset-0">
@@ -49,7 +51,7 @@ export default async function Home() {
         <div className="from-primary/5 to-primary/2 absolute inset-0 bg-gradient-to-br via-transparent" />
 
         {/* bg animation */}
-        <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-4xl space-y-8 text-center">
             <div className="space-y-4">
               <Badge
@@ -92,7 +94,7 @@ export default async function Home() {
       </section>
       <section className="relative border-t py-32">
         <div className="from-muted/20 to-background absolute inset-0 bg-gradient-to-bl"></div>
-        <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-20 space-y-6 text-center">
             <Badge className="text-foreground rounded-full border border-amber-500/20 bg-amber-500/5 text-xs font-semibold transition-colors duration-300">
               <StarsIcon className="mr-1 h-3 w-3 text-amber-500" />
@@ -184,7 +186,7 @@ export default async function Home() {
       </section>
       <section className="border-t py-32">
         {/* <div className="absolute inset-0 bg-gradient-to-b from-muted/20 to-background"></div> */}
-        <div className="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 space-y-6 text-center">
             <h2 className="text-4xl font-bold lg:text-5xl">
               Ready to Explore?
