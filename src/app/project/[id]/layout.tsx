@@ -49,7 +49,7 @@ const sidebarMenu: SidebarMenu = [
     ],
   },
   {
-    title: "Tools",
+    title: "Interactive Tools",
     menu: [
       {
         id: 1,

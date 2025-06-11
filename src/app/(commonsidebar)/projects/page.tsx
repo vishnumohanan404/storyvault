@@ -30,7 +30,7 @@ const ProjectsPage = async () => {
   const projects = await client.fetch<Project[]>(PROJECTS_QUERY, {}, options);
   return (
     <div className="w-[100%]">
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {projects.map((project) => (
           <Card key={project._id} className="hover:shadow-accent">
             <CardHeader className="flex flex-col space-y-2">
