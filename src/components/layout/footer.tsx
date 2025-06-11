@@ -9,9 +9,7 @@ const Footer = () => {
         <div className="flex justify-between">
           <div className="space-y-1.5">
             <h4 className="text-xl font-semibold">Story</h4>
-            <p className="text-muted-foreground text-sm">
-              Project Narratives.
-            </p>
+            <p className="text-muted-foreground text-sm">Project Narratives.</p>
             <p className="text-muted-foreground mt-4 text-xs">
               © 2025 Story. Built with Next.js and Tailwind CSS.
             </p>
