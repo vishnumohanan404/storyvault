@@ -4,7 +4,7 @@ import { KanbanBoard } from "@/components/kanban/kanban-board";
 
 const KanbanPage = () => {
   return (
-    <main className="space-y-8 mb-5">
+    <main className="min-h-screen max-w-7xl mx-auto py-8 space-y-8 mb-5">
       <PageHeaderSection
         title="Interactive Kanban Board"
         description="Experience hands-on project management with our interactive Kanban board. Drag and drop user stories between columns, and export your board state to GitHub Projects or download as JSON."
