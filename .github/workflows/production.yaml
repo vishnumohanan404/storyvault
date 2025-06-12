@@ -62,14 +62,19 @@ jobs:
       - name: 🔍 Check for changesets
         id: check-changesets
         run: |
-          # This checks if there are any .changeset/*.md files to process
-          if npx changeset status --verbose 2>&1 | grep -q "No changesets present"; then
+          # Check if there are unreleased changesets that will actually cause version bumps
+          CHANGESET_STATUS=$(npx changeset status --verbose 2>&1)
+          echo "$CHANGESET_STATUS"
+
+          if echo "$CHANGESET_STATUS" | grep -q "No changesets present"; then
             echo "has-changesets=false" >> $GITHUB_OUTPUT
             echo "📝 No changesets found - skipping release"
+          elif echo "$CHANGESET_STATUS" | grep -q "NO packages to be bumped"; then
+            echo "has-changesets=false" >> $GITHUB_OUTPUT
+            echo "📝 No packages will be bumped - skipping release"
           else
             echo "has-changesets=true" >> $GITHUB_OUTPUT
-            echo "📝 Changesets found - proceeding with release"
-            npx changeset status  # Show what will be released
+            echo "📝 Changesets found that will bump versions - proceeding with release"
           fi
 
       - name: 🏷️ Process changesets and bump version
@@ -84,31 +89,44 @@ jobs:
           echo "📦 Before changeset version:"
           cat package.json | grep '"version"'
 
-          npx changeset version
+          # Run changeset version and capture output
+          CHANGESET_OUTPUT=$(npx changeset version 2>&1)
+          echo "$CHANGESET_OUTPUT"
 
           echo "📦 After changeset version:"
           cat package.json | grep '"version"'
 
-          # Get the new version
-          NEW_VERSION=$(node -p "require('./package.json').version")
-          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          # Check if there are actually changes to commit
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "📝 No changes were made by changeset version"
+            echo "has-changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "📝 Changes detected, proceeding with commit"
+            echo "has-changes=true" >> $GITHUB_OUTPUT
+            
+            # Get the new version
+            NEW_VERSION=$(node -p "require('./package.json').version")
+            echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-          # Commit the version bump and changelog updates
-          git add .
-          git commit -m "chore(release): version bump to v$NEW_VERSION via changeset"
-          git push
+            # Commit the version bump and changelog updates
+            git add .
+            git commit -m "chore(release): version bump to v$NEW_VERSION via changeset"
+            git push
+          fi
 
       - name: 🏷️ Create Git Tag
-        if:
+        if: |
           steps.check-changesets.outputs.has-changesets == 'true' &&
+          steps.version.outputs.has-changes == 'true' &&
           steps.version.outputs.version
         run: |
           git tag v${{ steps.version.outputs.version }}
           git push origin v${{ steps.version.outputs.version }}
 
       - name: 📦 Create GitHub Release
-        if:
+        if: |
           steps.check-changesets.outputs.has-changesets == 'true' &&
+          steps.version.outputs.has-changes == 'true' &&
           steps.version.outputs.version
         uses: softprops/action-gh-release@v1
         with:
