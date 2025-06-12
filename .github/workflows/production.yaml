@@ -100,4 +100,4 @@ jobs:
       - name: 📦 Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ steps.get-version.outputs.version }}
+          tag_name: v${{ steps.version.outputs.version }}
