@@ -55,16 +55,49 @@ jobs:
       - name: 📥 Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: 🏷️ Bump version + generate changelog
+      - name: 🔍 Check for changesets
+        id: check-changesets
+        run: |
+          # This checks if there are any .changeset/*.md files to process
+          if npx changeset status --verbose 2>&1 | grep -q "No changesets present"; then
+            echo "has-changesets=false" >> $GITHUB_OUTPUT
+            echo "📝 No changesets found - skipping release"
+          else
+            echo "has-changesets=true" >> $GITHUB_OUTPUT
+            echo "📝 Changesets found - proceeding with release"
+            npx changeset status  # Show what will be released
+          fi
+
+      - name: 🏷️ Process changesets and bump version
+        if: steps.check-changesets.outputs.has-changesets == 'true'
+        id: version
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          echo "📦 Before changeset version:"
+          cat package.json | grep '"version"'
+
+          # This command:
+          # 1. Reads .changeset/*.md files
+          # 2. Updates package.json version based on changeset types
+          # 3. Updates CHANGELOG.md with new entries
+          # 4. DELETES the .changeset/*.md files (they're consumed)
           npx changeset version
+
+          echo "📦 After changeset version:"
+          cat package.json | grep '"version"'
+
+          # Get the new version
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+          # Commit the version bump and changelog updates
           git add .
-          git commit -m "chore(release): version bump via changeset"
+          git commit -m "chore(release): version bump to v$NEW_VERSION via changeset"
           git push
 
       - name: 📦 Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ steps.get-version.outputs.version }}
+          tag_name: v${{ steps.version.outputs.version }}
