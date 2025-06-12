@@ -71,6 +71,8 @@ jobs:
       - name: 🏷️ Process changesets and bump version
         if: steps.check-changesets.outputs.has-changesets == 'true'
         id: version
+        env:
+          HUSKY: 0
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -78,11 +80,6 @@ jobs:
           echo "📦 Before changeset version:"
           cat package.json | grep '"version"'
 
-          # This command:
-          # 1. Reads .changeset/*.md files
-          # 2. Updates package.json version based on changeset types
-          # 3. Updates CHANGELOG.md with new entries
-          # 4. DELETES the .changeset/*.md files (they're consumed)
           npx changeset version
 
           echo "📦 After changeset version:"
