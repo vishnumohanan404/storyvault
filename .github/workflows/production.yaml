@@ -4,13 +4,16 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
-  release:
-    name: 🔖 Version and Release
+  ci:
+    name: ʦ Type-check, link and test
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
@@ -33,6 +36,24 @@ jobs:
 
       - name: ⚡ Test
         run: npm run test -- --run
+
+  release:
+    name: 🔖 Version and Release
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    needs: ci
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: ⎔ Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📥 Install dependencies
+        uses: bahmutov/npm-install@v1
 
       - name: 🏷️ Bump version + generate changelog
         run: |
