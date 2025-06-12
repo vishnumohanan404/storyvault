@@ -40,13 +40,14 @@ jobs:
   release:
     name: 🔖 Version and Release
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: ci
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN }}
       - name: ⎔ Setup Node
         uses: actions/setup-node@v4
         with:
@@ -94,7 +95,22 @@ jobs:
           git commit -m "chore(release): version bump to v$NEW_VERSION via changeset"
           git push
 
+      - name: 🏷️ Create Git Tag
+        if:
+          steps.check-changesets.outputs.has-changesets == 'true' &&
+          steps.version.outputs.version
+        run: |
+          git tag v${{ steps.version.outputs.version }}
+          git push origin v${{ steps.version.outputs.version }}
+
       - name: 📦 Create GitHub Release
+        if:
+          steps.check-changesets.outputs.has-changesets == 'true' &&
+          steps.version.outputs.version
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ steps.version.outputs.version }}
+          name: Release v${{ steps.version.outputs.version }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
