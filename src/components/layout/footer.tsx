@@ -8,10 +8,10 @@ const Footer = () => {
       <div className="container mx-auto max-w-7xl py-6">
         <div className="flex justify-between">
           <div className="space-y-1.5">
-            <h4 className="text-xl font-semibold">Story</h4>
+            <h4 className="text-xl font-semibold">Stories</h4>
             <p className="text-muted-foreground text-sm">Project Narratives.</p>
             <p className="text-muted-foreground mt-4 text-xs">
-              © 2025 Story. Built with Next.js and Tailwind CSS.
+              © 2025 Stories. Built with Next.js and Tailwind CSS.
             </p>
           </div>
           <div className="flex items-center gap-3">
