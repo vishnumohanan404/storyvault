@@ -7,12 +7,12 @@ const PageHeaderSection = ({
   title,
   tags,
 }: {
-  description: string;
+  description?: string;
   title: string;
   tags?: string[];
 }) => {
   return (
-    <section className="space-y-3">
+    <section className="w-full space-y-3">
       {tags?.length && (
         <div className="flex gap-2">
           {tags?.map(item => (
@@ -23,9 +23,11 @@ const PageHeaderSection = ({
         </div>
       )}
       <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
-      <p className="text-muted-foreground text-xl leading-relaxed">
-        {description}
-      </p>
+      {description && (
+        <p className="text-muted-foreground text-xl leading-relaxed">
+          {description}
+        </p>
+      )}
     </section>
   );
 };
