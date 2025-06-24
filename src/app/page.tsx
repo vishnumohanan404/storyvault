@@ -39,6 +39,8 @@ export default async function Home() {
   const projects = await client.fetch<Project[]>(PROJECTS_QUERY, {}, options);
   return (
     <main className="mx-auto min-h-screen">
+      <div className="absolute bottom-0 left-0 right-0 top-[64px] bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+
       <section className="lg:py-42 relative overflow-hidden py-20">
         {/* bg animation */}
         {/* <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/30"></div>
@@ -47,7 +49,7 @@ export default async function Home() {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-pink-500/10 to-orange-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div> */}
-        <div className="from-primary/5 to-primary/2 absolute inset-0 bg-gradient-to-br via-transparent" />
+        {/* <div className="from-primary/5 to-primary/2 absolute inset-0 bg-gradient-to-br via-transparent" /> */}
 
         {/* bg animation */}
         <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -61,9 +63,10 @@ export default async function Home() {
                 Interactive Project Narratives
               </Badge>
               <h1 className="text-4xl font-bold tracking-tight lg:text-6xl">
-                Project{' '}
+                Document. Demo.
                 <span className="font-highlight from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
-                  Showcase
+                  {' '}
+                  Do it Yourself
                 </span>
               </h1>
               <p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
@@ -92,7 +95,8 @@ export default async function Home() {
         </div>
       </section>
       <section className="relative border-t py-32">
-        <div className="from-muted/20 to-background absolute inset-0 bg-gradient-to-bl"></div>
+        {/* <div className="from-muted/20 to-background absolute inset-0 bg-gradient-to-bl"></div> */}
+        <div className="absolute top-0 z-[-2] h-full w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#4f4f4f2e_1px)] bg-[size:100px_100px]"></div>
         <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-20 space-y-6 text-center">
             <Badge className="text-foreground rounded-full border border-amber-500/20 bg-amber-500/5 text-xs font-semibold transition-colors duration-300">
