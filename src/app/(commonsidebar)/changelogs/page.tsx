@@ -68,7 +68,7 @@ const parseChangelog = (content: string): ChangelogEntry[] => {
 };
 
 export default async function ChangelogPage() {
-  const filePath = path.join(process.cwd(), 'changelog.md');
+  const filePath = path.join(process.cwd(), 'CHANGELOG.md');
   const fileContents = readFileSync(filePath, 'utf8');
 
   const { content } = matter(fileContents);
