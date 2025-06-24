@@ -151,7 +151,7 @@ const ResourcePage = () => {
 
   if (loading) {
     return (
-      <main className="mb-5 space-y-8">
+      <main className="mb-5 w-full space-y-8">
         <PageHeaderSection
           title="Explore Resources"
           description="A handpicked collection of tutorials, articles, videos, and tools I've found valuable throughout my journey — regularly updated and thoughtfully organized."

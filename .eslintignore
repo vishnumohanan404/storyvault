@@ -1,0 +1,7 @@
+# Ignore coverage output
+coverage/
+.next/
+out/
+public/
+node_modules/
+next-env.d.ts
