@@ -4,3 +4,4 @@ coverage/
 out/
 public/
 node_modules/
+next-env.d.ts

@@ -1,6 +1,5 @@
-import { BookOpenIcon, TerminalIcon } from 'lucide-react';
 import React from 'react';
-import Commands from './command';
+
 interface Steps {
   count: string;
   title: string;

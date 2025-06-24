@@ -1,10 +1,4 @@
-import {
-  BookOpenIcon,
-  CircleCheckBig,
-  Download,
-  ExternalLink,
-  TerminalIcon,
-} from 'lucide-react';
+import { CircleCheckBig, Download } from 'lucide-react';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import React from 'react';
 
@@ -33,7 +27,7 @@ const IMPLEMENTATION_GUIDE_QUERY = `
 const ImplementationPage = async ({ params }: ProjectPageProps) => {
   const { id } = await params;
   const result = await client.fetch(IMPLEMENTATION_GUIDE_QUERY, { id });
-  console.log('result :>> ', result);
+  console.log('result :>>', result);
   return (
     <main className="mb-5 space-y-8">
       <PageHeaderSection
@@ -86,10 +80,10 @@ const ImplementationPage = async ({ params }: ProjectPageProps) => {
                 <h5 className="text-sm font-medium">Features</h5>
                 <ul className="space-y-1">
                   {result.sampleApplication.features.map(
-                    (feature: string, idx: number) => (
+                    (feature: string, index: number) => (
                       <li
                         className="text-muted-foreground flex items-center text-sm"
-                        key={feature + '_' + idx}
+                        key={feature + '_' + index}
                       >
                         <CircleCheckBig className="mr-2 h-3 w-3 flex-shrink-0 text-green-500" />
                         {feature}

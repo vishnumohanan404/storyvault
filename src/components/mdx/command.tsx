@@ -1,6 +1,5 @@
 import { TerminalIcon } from 'lucide-react';
 import React from 'react';
-import CodeBlock from './code-block';
 
 const Commands = ({ children }: { children: React.ReactNode }) => {
   return (
