@@ -28,7 +28,7 @@ const sidebarMenu = [
       {
         title: 'Changelogs',
         href: '/changelogs',
-        description: 'Current version: v1.0.0',
+        description: 'Current version & features',
       },
     ],
   },
