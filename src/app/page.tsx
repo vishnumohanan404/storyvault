@@ -96,7 +96,7 @@ export default async function Home() {
       </section>
       <section className="relative border-t py-32">
         {/* <div className="from-muted/20 to-background absolute inset-0 bg-gradient-to-bl"></div> */}
-        <div className="absolute top-0 z-[-2] h-full w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#4f4f4f2e_1px)] bg-[size:100px_100px]"></div>
+        <div className="absolute top-0 z-[-2] h-full w-full bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#4f4f4f2e_1px)] bg-[size:100px_100px]"></div>
         <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-20 space-y-6 text-center">
             <Badge className="text-foreground rounded-full border border-amber-500/20 bg-amber-500/5 text-xs font-semibold transition-colors duration-300">
