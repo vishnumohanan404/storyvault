@@ -84,14 +84,12 @@ const UserStories = async ({ params }: ProjectPageProps) => {
                       <div className="space-y-2">
                         <h3 className="flex items-center space-x-2 text-xl font-semibold tracking-tight">
                           <span className="text-muted-foreground font-mono text-sm">
-                            US1
+                            {userstory.storyId}
                           </span>
-                          <span>Set Up Git Repository</span>
+                          <span> {userstory.title}</span>
                         </h3>
                         <p className="text-muted-foreground text-base leading-relaxed">
-                          Set up GitLab repository with proper structure for
-                          GitOps workflow including branches, protection rules,
-                          and initial documentation.
+                          {userstory.description}
                         </p>
                       </div>
                     </div>
@@ -105,20 +103,18 @@ const UserStories = async ({ params }: ProjectPageProps) => {
                       <Target className="h-4 w-4" />
                       <span>Acceptance Criteria</span>
                     </h4>
-                    <ul className="ml-1 list-inside list-disc space-y-2">
-                      <li className="text-muted-foreground text-sm">
-                        GitLab repository created with proper naming convention
-                      </li>
-                      <li className="text-muted-foreground text-sm">
-                        Branch protection rules configured for main branch
-                      </li>
-                      <li className="text-muted-foreground text-sm">
-                        Initial README and documentation structure in place
-                      </li>
-                      <li className="text-muted-foreground text-sm">
-                        GitOps workflow directory structure established
-                      </li>
-                    </ul>
+                    {userstory.acceptanceCriteria && (
+                      <ul className="ml-1 list-inside list-disc space-y-2">
+                        {userstory.acceptanceCriteria?.map(criteria => (
+                          <li
+                            key={criteria}
+                            className="text-muted-foreground text-sm"
+                          >
+                            {criteria}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
               </div>
