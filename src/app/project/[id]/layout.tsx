@@ -35,12 +35,12 @@ const sidebarMenu: SidebarMenu = [
         path: 'userstories',
         description: 'Detailed development breakdown',
       },
-      {
-        id: 2,
-        title: 'Implementation Guide',
-        path: 'implementation',
-        description: 'Step-by-step process',
-      },
+      // {
+      //   id: 2,
+      //   title: 'Implementation Guide',
+      //   path: 'implementation',
+      //   description: 'Step-by-step process',
+      // },
       // todo: after completing first project
       // {
       //   id: 3,
