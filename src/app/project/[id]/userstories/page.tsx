@@ -9,6 +9,7 @@ import { getPriorityStyle, getSizeStyle, getStatusStyle } from '@/lib/utils';
 import { client } from '@/sanity/client';
 
 import { ProjectPageProps, UserStory } from '../types';
+import ExploreKanban from '@/components/common/explore-cards/kanban';
 
 const PROJECT_USERSTORIES_QUERY = `
     *[_type == "userstories" && project._ref == $projectId][0].userstory[]{
@@ -124,7 +125,8 @@ const UserStories = async ({ params }: ProjectPageProps) => {
       </PageContentSection>
       <PageContentSection title="Explore Further">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <ExploreImplementation id={id} />
+          {/* <ExploreImplementation id={id} /> */}
+          <ExploreKanban id={id} />
         </div>
       </PageContentSection>
     </main>

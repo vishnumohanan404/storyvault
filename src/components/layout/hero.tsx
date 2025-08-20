@@ -47,17 +47,16 @@ const Hero = () => {
                   <Zap className="mr-1 h-3 w-3" />
                   Interactive Project Narratives
                 </Badge>
-                <h1 className="text-4xl font-bold tracking-tight lg:text-6xl">
-                  Document. Demo.
+                <h1 className="whitespace-nowrap text-4xl font-bold tracking-tight lg:text-6xl">
+                  Skip Planning. Master Building.
                   <span className="font-highlight from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
                     {' '}
-                    Do it Yourself
+                    DIY
                   </span>
                 </h1>
-                <p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed">
-                  A comprehensive platform for documenting, demonstrating, and
-                  sharing my DevOps projects with interactive tools for
-                  engagment.
+                <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-xl leading-relaxed">
+                  DevOps project blueprints so you focus on implementation, not
+                  planning.
                 </p>
               </motion.div>
             </div>
