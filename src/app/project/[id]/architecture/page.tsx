@@ -88,58 +88,64 @@ const ArchitecturePage = async ({ params }: ProjectPageProps) => {
         </div>
       </PageContentSection>
 
-      <PageContentSection title="Data Flow & User Journey">
-        <div className="space-y-4">
-          {systemArchitecture.dataFlow.map(flow => (
-            <div
-              key={flow.order + '_' + flow.title}
-              className="bg-card text-card-foreground rounded-lg border p-6 shadow-sm"
-            >
-              <div className="flex items-center space-x-4">
-                <div className="bg-primary text-primary-foreground flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-semibold">
-                  {flow.order}
-                </div>
-                <div className="space-y-1">
-                  <h3 className="font-semibold">{flow.title}</h3>
-                  <p className="text-muted-foreground text-sm">
-                    {flow.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </PageContentSection>
-
-      <PageContentSection title="Database Design">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {systemArchitecture.dbSchema.map(collection => (
-            <div
-              key={collection.table}
-              className="bg-card text-card-foreground rounded-lg border p-6 shadow-sm"
-            >
-              <h3 className="mb-4 text-lg font-semibold">{collection.table}</h3>
-              <div className="space-y-3 text-sm">
-                <div className="grid grid-cols-3 gap-4 border-b pb-2 font-medium">
-                  <span>Column</span>
-                  <span>Type</span>
-                  <span>Description</span>
-                </div>
-                {collection.schema.map(item => (
-                  <div
-                    key={item.column}
-                    className="text-muted-foreground grid grid-cols-3 gap-4"
-                  >
-                    <span>{item.column}</span>
-                    <span>{item.type}</span>
-                    <span>{item.description}</span>
+      {systemArchitecture.dataFlow && (
+        <PageContentSection title="Data Flow & User Journey">
+          <div className="space-y-4">
+            {systemArchitecture.dataFlow.map(flow => (
+              <div
+                key={flow.order + '_' + flow.title}
+                className="bg-card text-card-foreground rounded-lg border p-6 shadow-sm"
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="bg-primary text-primary-foreground flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-sm font-semibold">
+                    {flow.order}
                   </div>
-                ))}
+                  <div className="space-y-1">
+                    <h3 className="font-semibold">{flow.title}</h3>
+                    <p className="text-muted-foreground text-sm">
+                      {flow.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </PageContentSection>
+            ))}
+          </div>
+        </PageContentSection>
+      )}
+
+      {systemArchitecture.dbSchema && (
+        <PageContentSection title="Database Design">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {systemArchitecture.dbSchema.map(collection => (
+              <div
+                key={collection.table}
+                className="bg-card text-card-foreground rounded-lg border p-6 shadow-sm"
+              >
+                <h3 className="mb-4 text-lg font-semibold">
+                  {collection.table}
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="grid grid-cols-3 gap-4 border-b pb-2 font-medium">
+                    <span>Column</span>
+                    <span>Type</span>
+                    <span>Description</span>
+                  </div>
+                  {collection.schema.map(item => (
+                    <div
+                      key={item.column}
+                      className="text-muted-foreground grid grid-cols-3 gap-4"
+                    >
+                      <span>{item.column}</span>
+                      <span>{item.type}</span>
+                      <span>{item.description}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </PageContentSection>
+      )}
 
       {/* <div className="space-y-3">
         <h2 className="text-2xl font-semibold">Security &amp; Performance</h2>
