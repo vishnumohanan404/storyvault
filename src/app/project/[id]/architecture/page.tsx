@@ -1,4 +1,4 @@
-import ExploreImplementation from '@/components/common/explore-cards/implementation';
+import ExploreKanban from '@/components/common/explore-cards/kanban';
 import ExploreUserstories from '@/components/common/explore-cards/userstories';
 import PageContentSection from '@/components/layout/page-content-section';
 import PageHeaderSection from '@/components/layout/page-header-section';
@@ -227,7 +227,8 @@ const ArchitecturePage = async ({ params }: ProjectPageProps) => {
       <PageContentSection title="Explore Further">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <ExploreUserstories id={id} />
-          <ExploreImplementation id={id} />
+          <ExploreKanban id={id} />
+          {/* <ExploreImplementation id={id} /> */}
         </div>
       </PageContentSection>
     </main>
