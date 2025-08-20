@@ -232,9 +232,9 @@ const ResourcePage = () => {
                 </div>
 
                 <div className="flex flex-col space-y-1.5 p-6">
-                  <h3 className="line-clamp-2 text-lg font-semibold tracking-tight">
+                  <a href={post.url} target='_blank' className="hover:underline underline-offset-4 line-clamp-2 text-lg font-semibold tracking-tight">
                     {post.title}
-                  </h3>
+                  </a>
                   <p className="line-clamp-3 text-base text-gray-700">
                     {post.subtitle}
                   </p>
