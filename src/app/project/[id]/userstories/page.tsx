@@ -1,7 +1,7 @@
 import { Clock, Target } from 'lucide-react';
 import React from 'react';
 
-import ExploreImplementation from '@/components/common/explore-cards/implementation';
+import ExploreKanban from '@/components/common/explore-cards/kanban';
 import PageContentSection from '@/components/layout/page-content-section';
 import PageHeaderSection from '@/components/layout/page-header-section';
 import { Separator } from '@/components/ui/separator';
@@ -9,7 +9,6 @@ import { getPriorityStyle, getSizeStyle, getStatusStyle } from '@/lib/utils';
 import { client } from '@/sanity/client';
 
 import { ProjectPageProps, UserStory } from '../types';
-import ExploreKanban from '@/components/common/explore-cards/kanban';
 
 const PROJECT_USERSTORIES_QUERY = `
     *[_type == "userstories" && project._ref == $projectId][0].userstory[]{
