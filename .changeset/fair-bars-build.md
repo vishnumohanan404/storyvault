@@ -1,5 +1,0 @@
----
-'storyvault': minor
----
-
-changelogs added
